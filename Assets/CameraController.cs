@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
             EventTrigger eventTrigger = obj.AddComponent<EventTrigger>();
             EventTrigger.Entry entry1 = new EventTrigger.Entry();
             entry1.eventID = EventTriggerType.PointerEnter;
-            //entry1.GameObject = obj;
+            
             entry1.callback.AddListener((eventData) => obj.GetComponent<GoogleVR.HelloVR.ObjectController>().SetGazedAt(true));
             eventTrigger.triggers.Add(entry1);
 
