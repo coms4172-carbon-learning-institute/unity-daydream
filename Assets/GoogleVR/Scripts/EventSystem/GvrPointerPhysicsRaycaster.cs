@@ -172,6 +172,7 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
                                            PointerEventData eventData,
                                            List<RaycastResult> resultAppendList)
     {
+        pointerRay.distance = 1000.0f;
         if (eventCamera == null)
         {
             return false;
@@ -235,6 +236,7 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
             };
 
             resultAppendList.Add(result);
+            Debug.Log(result);
         }
 
         return true;
