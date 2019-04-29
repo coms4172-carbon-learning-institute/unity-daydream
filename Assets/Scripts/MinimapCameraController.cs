@@ -7,11 +7,17 @@ public class MinimapCameraController : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject player;
-    public float minimapCameraOffset = 10.0f;
+    private float minimapCameraOffset = 700.0f;
     void Start()
     {
         transform.position = new Vector3(player.transform.position.x,player.transform.position.y +  minimapCameraOffset, player.transform.position.z);
         transform.Rotate(90f, 0, 0);
+    }
+
+    void Update()
+    {
+        transform.position = new Vector3(player.transform.position.x,player.transform.position.y +  minimapCameraOffset, player.transform.position.z);
+        transform.eulerAngles = player.transform.eulerAngles + new Vector3(90f, 0, 0);
     }
 
    
