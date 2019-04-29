@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
   private Material hoverMaterial;
 
   void Start()
- {
+  {
     hoverMaterial = Resources.Load("Materials/Hover") as Material;
     selectedObjs = GameObject.FindGameObjectsWithTag("selectable");
 
@@ -28,19 +28,18 @@ public class CameraController : MonoBehaviour
         EventTrigger eventTrigger = obj.AddComponent<EventTrigger>();
         EventTrigger.Entry entry1 = new EventTrigger.Entry();
         entry1.eventID = EventTriggerType.PointerEnter;
-        eventTrigger.triggers.Add(entry1);
+        //eventTrigger.triggers.Add(entry1);
         entry1.callback.AddListener((eventData) => obj.GetComponent<GoogleVR.HelloVR.ObjectController>().SetGazedAt(true));
+        eventTrigger.triggers.Add(entry1);
+        //print(entry1.);
 
 
         //pointerExit
-
         EventTrigger.Entry entry2 = new EventTrigger.Entry();
         entry2.eventID = EventTriggerType.PointerExit;
-        eventTrigger.triggers.Add(entry2);
+        
         entry2.callback.AddListener((eventData) => obj.GetComponent<GoogleVR.HelloVR.ObjectController>().SetGazedAt(false));
-
-
+        eventTrigger.triggers.Add(entry2);
     }
   }
-
 }
