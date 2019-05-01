@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour
             obj.AddComponent<CustomObjectController>();
             obj.GetComponent<CustomObjectController>().inactiveMaterial = currentObjMaterial;
             obj.GetComponent<CustomObjectController>().gazedAtMaterial = hoverMaterial;
+            obj.GetComponent<CustomObjectController>().panel = infoPanel;
 
             //pointerEnter
 
@@ -39,27 +40,27 @@ public class CameraController : MonoBehaviour
             entry1.callback.AddListener((eventData) => obj.GetComponent<CustomObjectController>().SetGazedAt(true));
             eventTrigger.triggers.Add(entry1);
 
-
             //pointerExit
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
             entry2.eventID = EventTriggerType.PointerExit;
             //entry2.callback.AddListener((eventData) => obj.GetComponent<GoogleVR.HelloVR.ObjectController>().SetGazedAt(false));
             entry2.callback.AddListener((eventData) => obj.GetComponent<CustomObjectController>().SetGazedAt(false));
             eventTrigger.triggers.Add(entry2);
+
+            EventTrigger.Entry entry3 = new EventTrigger.Entry();
+            entry3.eventID = EventTriggerType.PointerClick;
+            entry3.callback.AddListener((eventData) => obj.GetComponent<CustomObjectController>().showPanel(true));
+            eventTrigger.triggers.Add(entry3);
+
+
+            // add parent information for info panel
+
         }
     }
 
     private void Update()
     {
-        currSelectedObj = EventSystem.current.currentSelectedGameObject;
-        if (currSelectedObj != null)
-        {
-            print("SELECTED");
-            infoPanel.SetActive(true);
-        }
-        else
-        {
-            infoPanel.SetActive(false);
-        }
+        //currSelectedObj = EventSystem.current.currentSelectedGameObject;
+
     }
 }

@@ -25,17 +25,19 @@ public class CustomObjectController : MonoBehaviour
 {
     // Start is called before the first frame update
     public Material inactiveMaterial;
-
-   
     public Material gazedAtMaterial;
+    public GameObject panel;
 
     private Vector3 startingPosition;
     private Renderer myRenderer;
 
-    /// <summary>Sets this instance's GazedAt state.</summary>
-    /// <param name="gazedAt">
-    /// Value `true` if this object is being gazed at, `false` otherwise.
-    /// </param>
+    private void Start()
+    {
+        startingPosition = transform.localPosition;
+        myRenderer = GetComponent<Renderer>();
+        SetGazedAt(false);
+    }
+
     public void SetGazedAt(bool gazedAt)
     {
         if (inactiveMaterial != null && gazedAtMaterial != null)
@@ -45,24 +47,8 @@ public class CustomObjectController : MonoBehaviour
         }
     }
 
-    /// <summary>Resets this instance and its siblings to their starting positions.</summary>
-    public void Reset()
+    public void showPanel(bool show)
     {
-        int sibIdx = transform.GetSiblingIndex();
-        int numSibs = transform.parent.childCount;
-        for (int i = 0; i < numSibs; i++)
-        {
-            GameObject sib = transform.parent.GetChild(i).gameObject;
-            sib.transform.localPosition = startingPosition;
-            sib.SetActive(i == sibIdx);
-        }
-    }
-
-
-    private void Start()
-    {
-        startingPosition = transform.localPosition;
-        myRenderer = GetComponent<Renderer>();
-        SetGazedAt(false);
+        panel.SetActive(show);
     }
 }
