@@ -7,7 +7,7 @@ public class MinimapCameraController : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject player;
-    private float minimapCameraOffset = 700.0f;
+    private float minimapCameraOffset = 1000.0f;
     void Start()
     {
         transform.position = new Vector3(player.transform.position.x,player.transform.position.y +  minimapCameraOffset, player.transform.position.z);

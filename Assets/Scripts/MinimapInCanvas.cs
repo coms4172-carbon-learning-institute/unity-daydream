@@ -16,8 +16,6 @@ public class MinimapInCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + offset;
-        transform.eulerAngles = player.transform.eulerAngles;
-
+        transform.position = player.transform.position + player.transform.up + offset;
     }
 }
