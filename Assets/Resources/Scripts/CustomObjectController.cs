@@ -30,15 +30,27 @@ public class CustomObjectController : MonoBehaviour
     public GameObject canvas;
     public GameObject panel;
     public RawImage rawimage;
+    public Text info;
+    public Text infoTitle;
 
     private Vector3 startingPosition;
     private Renderer myRenderer;
+
+    Dictionary<string, string> info_dict = new Dictionary<string, string>();
+    Dictionary<string, string> infoTitle_dict = new Dictionary<string, string>();
 
     private void Start()
     {
         startingPosition = transform.localPosition;
         myRenderer = GetComponent<Renderer>();
         SetGazedAt(false);
+
+        infoTitle_dict.Add("Farming", "CLT(Cross Laminated Timber)");
+        info_dict.Add("Farming", "Embodied carbon: - 460 Kg/Ton");
+
+        infoTitle_dict.Add("Frame", "BIOCHAR Brick");
+        info_dict.Add("Frame", "Embodied carbon: - 900 Kg/Ton");
+      
     }
 
     public void SetGazedAt(bool gazedAt)
@@ -57,13 +69,8 @@ public class CustomObjectController : MonoBehaviour
 
         Texture mat = Resources.Load("Model_Materials/" + tag + "_material") as Texture;
         rawimage.texture = mat;
-
-        /*if (gameObject.transform.parent.CompareTag("Farming"))
-        {
-            print("yes farming");
-            Texture mat = Resources.Load("Model_Materials/"+tag+"_material") as Texture;
-            rawimage.texture = mat;
-
-        }*/
+        //print(info_dict[tag]);
+        info.text = info_dict[tag];
+        infoTitle.text = infoTitle_dict[tag];
     }
 }

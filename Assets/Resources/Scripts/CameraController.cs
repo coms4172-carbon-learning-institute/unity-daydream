@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     public GameObject canvas;
     public GameObject panel;
     public RawImage rawimage;
+    public Text info;
+    public Text infoTitle;
 
     private Material hoverMaterial;
     public GameObject currSelectedObj;
@@ -31,6 +33,8 @@ public class CameraController : MonoBehaviour
             obj.GetComponent<CustomObjectController>().canvas = canvas;
             obj.GetComponent<CustomObjectController>().panel = panel;
             obj.GetComponent<CustomObjectController>().rawimage = rawimage;
+            obj.GetComponent<CustomObjectController>().info = info;
+            obj.GetComponent<CustomObjectController>().infoTitle = infoTitle;
 
             //pointerEnter
 
