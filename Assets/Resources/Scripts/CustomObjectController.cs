@@ -26,7 +26,7 @@ public class CustomObjectController : MonoBehaviour
     // Start is called before the first frame update
     public Material inactiveMaterial;
     public Material gazedAtMaterial;
-    public GameObject panel;
+    public GameObject canvas;
 
     private Vector3 startingPosition;
     private Renderer myRenderer;
@@ -47,8 +47,8 @@ public class CustomObjectController : MonoBehaviour
         }
     }
 
-    public void showPanel(bool show)
+    public void showCanvas(bool show)
     {
-        panel.SetActive(show);
+        canvas.SetActive(show);
     }
 }

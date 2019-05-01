@@ -8,14 +8,14 @@ public class CameraController : MonoBehaviour
 {
     public GameObject[] selectedObjs;
     public Material currentObjMaterial;
-    public GameObject infoPanel;
+    public GameObject canvas;
 
     private Material hoverMaterial;
     public GameObject currSelectedObj;
 
     void Start()
     {
-        infoPanel.SetActive(false);
+        canvas.SetActive(false);
         hoverMaterial = Resources.Load("Materials/Hover") as Material;
         selectedObjs = GameObject.FindGameObjectsWithTag("selectable");
 
@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
             obj.AddComponent<CustomObjectController>();
             obj.GetComponent<CustomObjectController>().inactiveMaterial = currentObjMaterial;
             obj.GetComponent<CustomObjectController>().gazedAtMaterial = hoverMaterial;
-            obj.GetComponent<CustomObjectController>().panel = infoPanel;
+            obj.GetComponent<CustomObjectController>().canvas = canvas;
 
             //pointerEnter
 
@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
 
             EventTrigger.Entry entry3 = new EventTrigger.Entry();
             entry3.eventID = EventTriggerType.PointerClick;
-            entry3.callback.AddListener((eventData) => obj.GetComponent<CustomObjectController>().showPanel(true));
+            entry3.callback.AddListener((eventData) => obj.GetComponent<CustomObjectController>().showCanvas(true));
             eventTrigger.triggers.Add(entry3);
 
 

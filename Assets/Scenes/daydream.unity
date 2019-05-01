@@ -1598,7 +1598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedObjs: []
   currentObjMaterial: {fileID: 0}
-  infoPanel: {fileID: 1370386537}
+  infoPanel: {fileID: 155878486}
   currSelectedObj: {fileID: 0}
 --- !u!4 &1517625391 stripped
 Transform:
@@ -1642,6 +1642,7 @@ GameObject:
   - component: {fileID: 1797043988}
   - component: {fileID: 1797043987}
   - component: {fileID: 1797043986}
+  - component: {fileID: 1797043989}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1759,6 +1760,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797043984}
   m_CullTransparentMesh: 0
+--- !u!114 &1797043989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797043984}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8860bab7a52a74319a27c9ba709b51b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1885508928
 GameObject:
   m_ObjectHideFlags: 0
