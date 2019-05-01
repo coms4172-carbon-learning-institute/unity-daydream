@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
     public GameObject[] selectedObjs;
     public Material currentObjMaterial;
     public GameObject canvas;
+    public GameObject panel;
+    public RawImage rawimage;
 
     private Material hoverMaterial;
     public GameObject currSelectedObj;
@@ -23,27 +25,24 @@ public class CameraController : MonoBehaviour
         {
             currentObjMaterial = obj.GetComponent<Renderer>().material;
             obj.AddComponent<MeshCollider>();
-            //obj.AddComponent<GoogleVR.HelloVR.ObjectController>();
-            //obj.GetComponent<GoogleVR.HelloVR.ObjectController>().inactiveMaterial = currentObjMaterial;
-            //obj.GetComponent<GoogleVR.HelloVR.ObjectController>().gazedAtMaterial = hoverMaterial;
             obj.AddComponent<CustomObjectController>();
             obj.GetComponent<CustomObjectController>().inactiveMaterial = currentObjMaterial;
             obj.GetComponent<CustomObjectController>().gazedAtMaterial = hoverMaterial;
             obj.GetComponent<CustomObjectController>().canvas = canvas;
+            obj.GetComponent<CustomObjectController>().panel = panel;
+            obj.GetComponent<CustomObjectController>().rawimage = rawimage;
 
             //pointerEnter
 
             EventTrigger eventTrigger = obj.AddComponent<EventTrigger>();
             EventTrigger.Entry entry1 = new EventTrigger.Entry();
             entry1.eventID = EventTriggerType.PointerEnter;
-            //entry1.callback.AddListener((eventData) => obj.GetComponent<GoogleVR.HelloVR.ObjectController>().SetGazedAt(true));
             entry1.callback.AddListener((eventData) => obj.GetComponent<CustomObjectController>().SetGazedAt(true));
             eventTrigger.triggers.Add(entry1);
 
             //pointerExit
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
             entry2.eventID = EventTriggerType.PointerExit;
-            //entry2.callback.AddListener((eventData) => obj.GetComponent<GoogleVR.HelloVR.ObjectController>().SetGazedAt(false));
             entry2.callback.AddListener((eventData) => obj.GetComponent<CustomObjectController>().SetGazedAt(false));
             eventTrigger.triggers.Add(entry2);
 

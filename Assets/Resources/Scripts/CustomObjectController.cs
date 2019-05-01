@@ -20,6 +20,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CustomObjectController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class CustomObjectController : MonoBehaviour
     public Material inactiveMaterial;
     public Material gazedAtMaterial;
     public GameObject canvas;
+    public GameObject panel;
+    public RawImage rawimage;
 
     private Vector3 startingPosition;
     private Renderer myRenderer;
@@ -50,5 +53,17 @@ public class CustomObjectController : MonoBehaviour
     public void showCanvas(bool show)
     {
         canvas.SetActive(show);
+        string tag = gameObject.transform.parent.tag;
+
+        Texture mat = Resources.Load("Model_Materials/" + tag + "_material") as Texture;
+        rawimage.texture = mat;
+
+        /*if (gameObject.transform.parent.CompareTag("Farming"))
+        {
+            print("yes farming");
+            Texture mat = Resources.Load("Model_Materials/"+tag+"_material") as Texture;
+            rawimage.texture = mat;
+
+        }*/
     }
 }
