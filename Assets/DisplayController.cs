@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DisplayController : MonoBehaviour
 {
 
-    public GameObject canvas;
+    public GameObject panel;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,7 @@ public class DisplayController : MonoBehaviour
     }
 
     public void clickExit() {
-      canvas.SetActive(false);
+      panel.SetActive(false);
     }
     // Update is called once per frame
     void Update()

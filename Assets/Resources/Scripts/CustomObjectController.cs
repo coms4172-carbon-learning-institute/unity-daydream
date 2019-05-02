@@ -64,7 +64,9 @@ public class CustomObjectController : MonoBehaviour
 
     public void showCanvas(bool show)
     {
-        canvas.SetActive(show);
+        //canvas.SetActive(show);
+        print("switch panel");
+        panel.SetActive(show);
         string tag = gameObject.transform.parent.tag;
 
         Texture mat = Resources.Load("Model_Materials/" + tag + "_material") as Texture;

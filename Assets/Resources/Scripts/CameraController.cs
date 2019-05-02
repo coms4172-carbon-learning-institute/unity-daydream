@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        canvas.SetActive(false);
+        panel.SetActive(false);
         hoverMaterial = Resources.Load("Materials/Hover") as Material;
         selectedObjs = GameObject.FindGameObjectsWithTag("selectable");
 
