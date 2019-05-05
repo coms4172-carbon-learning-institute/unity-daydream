@@ -32,12 +32,15 @@ public class CustomObjectController : MonoBehaviour
     public RawImage rawimage;
     public Text info;
     public Text infoTitle;
+   
 
     private Vector3 startingPosition;
     private Renderer myRenderer;
 
-    Dictionary<string, string> info_dict = new Dictionary<string, string>();
-    Dictionary<string, string> infoTitle_dict = new Dictionary<string, string>();
+    private Dictionary<string, string> info_dict;
+    private Dictionary<string, string> infoTitle_dict;
+    private Dictionary<string, string> infoMat_dict;
+
 
     private void Start()
     {
@@ -45,12 +48,10 @@ public class CustomObjectController : MonoBehaviour
         myRenderer = GetComponent<Renderer>();
         SetGazedAt(false);
 
-        infoTitle_dict.Add("Farming", "CLT(Cross Laminated Timber)");
-        info_dict.Add("Farming", "Embodied carbon: - 460 Kg/Ton");
+        info_dict = GameObject.Find("Main Camera").GetComponent<CameraController>().info_dict;
+        infoTitle_dict = GameObject.Find("Main Camera").GetComponent<CameraController>().infoTitle_dict;
+        infoMat_dict = GameObject.Find("Main Camera").GetComponent<CameraController>().infoMat_dict;
 
-        infoTitle_dict.Add("Frame", "BIOCHAR Brick");
-        info_dict.Add("Frame", "Embodied carbon: - 900 Kg/Ton");
-      
     }
 
     public void SetGazedAt(bool gazedAt)
@@ -60,6 +61,7 @@ public class CustomObjectController : MonoBehaviour
             myRenderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial;
             return;
         }
+
     }
 
     public void showCanvas(bool show)
@@ -69,10 +71,12 @@ public class CustomObjectController : MonoBehaviour
         panel.SetActive(show);
         string tag = gameObject.transform.parent.tag;
 
-        Texture mat = Resources.Load("Model_Materials/" + tag + "_material") as Texture;
+        Texture mat = Resources.Load("Model_Materials/" + infoMat_dict[tag]) as Texture;
         rawimage.texture = mat;
         //print(info_dict[tag]);
         info.text = info_dict[tag];
         infoTitle.text = infoTitle_dict[tag];
     }
+
+   
 }
