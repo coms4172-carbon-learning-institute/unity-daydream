@@ -15,6 +15,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace DaydreamElements.Tunneling {
 
@@ -52,7 +53,13 @@ namespace DaydreamElements.Tunneling {
     [SerializeField]
     private BaseVignetteController vignetteController;
 
+    // Walk and Elevator Toggles
+    public Toggle walkToggle;
+    public Toggle elevatorToggle;
+    
     private bool isMoving = false;
+    private bool isElevator = false;
+
     private CharacterController characterController;
     private Vector2 smoothTouch = Vector2.zero;
     private Vector2? initTouch = null;
@@ -109,7 +116,13 @@ namespace DaydreamElements.Tunneling {
         smoothTouch.y = ApplyExponentialSmoothing(smoothTouch.y, touchPos.y, dt);
 
         ApplyRotation(dt);
-        ApplyTranslation(dt);
+
+        if (walkToggle.isOn){
+          ApplyTranslation(dt);
+        } else if (elevatorToggle.isOn){
+          ApplyElevatorTranslation(dt);
+        }
+        
       }
     }
 
@@ -130,6 +143,23 @@ namespace DaydreamElements.Tunneling {
     private void ApplyTranslation(float dt) {
       float forwardSpeed =  maxSpeed * smoothTouch.y;
       Vector3 velocity = new Vector3(0.0f, 0.0f, forwardSpeed);
+
+      Quaternion cameraRotation = Camera.main.transform.rotation;
+      cameraRotation = Quaternion.Euler(new Vector3(0.0f, cameraRotation.eulerAngles.y, 0.0f));
+      Vector3 rotatedVelocity = cameraRotation * velocity;
+
+      if (characterController != null) {
+        characterController.SimpleMove(rotatedVelocity);
+      } else {
+        Vector3 position = transform.position;
+        position += rotatedVelocity * dt;
+        transform.position = position;
+      }
+    }
+
+    private void ApplyElevatorTranslation(float dt){
+      float forwardSpeed =  maxSpeed * smoothTouch.y;
+      Vector3 velocity = new Vector3(0.0f, forwardSpeed, 0.0f );
 
       Quaternion cameraRotation = Camera.main.transform.rotation;
       cameraRotation = Quaternion.Euler(new Vector3(0.0f, cameraRotation.eulerAngles.y, 0.0f));
@@ -196,6 +226,10 @@ namespace DaydreamElements.Tunneling {
       }
 
       if (isMoving) {
+        return false;
+      }
+
+      if (!walkToggle.isOn && !elevatorToggle.isOn){
         return false;
       }
 

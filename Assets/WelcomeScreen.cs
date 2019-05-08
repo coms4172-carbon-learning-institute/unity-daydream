@@ -16,6 +16,7 @@ public class WelcomeScreen : MonoBehaviour
 
     void Begin()
     {
+        Debug.Log("close welcome panel");
         panel.SetActive(false);
     }
 }
