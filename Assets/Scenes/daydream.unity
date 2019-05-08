@@ -5579,7 +5579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02a88063912a4348b263cb10fc90157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1000
+  maxSpeed: 100
   maxAngularSpeed: 30
   smoothingFactor: 5
   minInputThreshold: 0.3
