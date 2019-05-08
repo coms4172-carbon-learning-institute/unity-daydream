@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     public Material currentObjMaterial;
     public GameObject canvas;
     public GameObject panel;
+    public GameObject controlPanel;
     public RawImage rawimage;
     public Text info;
     public Text infoTitle;
@@ -28,6 +29,10 @@ public class CameraController : MonoBehaviour
 
     private Dictionary<GameObject, Material> og_mat_dict = new Dictionary<GameObject, Material>();
     private Dictionary<GameObject, Material> carbon_mat_dict = new Dictionary<GameObject, Material>();
+
+    // Daydream Controller Input
+    public GameObject HandheldController;
+    private GvrControllerInputDevice DaydreamControllerInput;
 
     void Start()
     {
@@ -114,6 +119,8 @@ public class CameraController : MonoBehaviour
             // add parent information for info panel
 
         }
+
+        DaydreamControllerInput = HandheldController.GetComponent<GvrTrackedController>().ControllerInputDevice;
     }
     private int scale(float minval, float maxval, float x)
     {
@@ -127,6 +134,12 @@ public class CameraController : MonoBehaviour
     {
 
         carbonToggle.onValueChanged.AddListener(CarbonToggleListener);
+
+        if (DaydreamControllerInput.GetButtonUp(GvrControllerButton.App)) {
+            bool controlPanelIsActive = controlPanel.activeInHierarchy;
+            controlPanel.SetActive(!controlPanelIsActive);
+            Debug.Log("Toggle Control Panel");
+        }
 
 
     }
