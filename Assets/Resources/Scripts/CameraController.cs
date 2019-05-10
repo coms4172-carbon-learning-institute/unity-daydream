@@ -94,7 +94,7 @@ public class CameraController : MonoBehaviour
             obj.GetComponent<CustomObjectController>().rawimage = rawimage;
             obj.GetComponent<CustomObjectController>().info = info;
             obj.GetComponent<CustomObjectController>().infoTitle = infoTitle;
-      
+
 
             //pointerEnter
 

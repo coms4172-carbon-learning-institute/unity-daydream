@@ -236,7 +236,7 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
             };
 
             resultAppendList.Add(result);
-            
+
         }
 
         return true;

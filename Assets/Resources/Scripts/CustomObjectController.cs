@@ -32,7 +32,7 @@ public class CustomObjectController : MonoBehaviour
     public RawImage rawimage;
     public Text info;
     public Text infoTitle;
-   
+
 
     private Vector3 startingPosition;
     private Renderer myRenderer;
@@ -78,5 +78,5 @@ public class CustomObjectController : MonoBehaviour
         infoTitle.text = infoTitle_dict[tag];
     }
 
-   
+
 }
