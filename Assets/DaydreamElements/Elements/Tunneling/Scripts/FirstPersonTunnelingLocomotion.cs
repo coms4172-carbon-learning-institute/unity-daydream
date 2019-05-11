@@ -16,6 +16,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace DaydreamElements.Tunneling {
 
@@ -27,7 +28,10 @@ namespace DaydreamElements.Tunneling {
   public class FirstPersonTunnelingLocomotion : MonoBehaviour {
     [Tooltip("The max speed to translate the camera (meters per second).")]
     public float maxSpeed = 7.0f;
-
+    public bool isWalking = true;
+    public GameObject HandheldController;
+    private GvrControllerInputDevice DaydreamControllerInput;
+       
     [Tooltip("The max angular velocity to rotate the camera (degrees per second).")]
     [Range(0.0f, 180.0f)]
     public float maxAngularSpeed = 30.0f;
@@ -73,25 +77,50 @@ namespace DaydreamElements.Tunneling {
       Assert.IsTrue(minInputThreshold < maxInputThreshold);
     }
 
-    void OnDisable() {
+    private void Start()
+    {
+        DaydreamControllerInput = HandheldController.GetComponent<GvrTrackedController>().ControllerInputDevice;
+
+    }
+
+        void OnDisable() {
       StopMoving();
     }
 
-    protected virtual void Update() {
-      if (GvrControllerInput.TouchDown) {
-        initTouch = GvrControllerInput.TouchPos;
-      } else if (CanStartMoving()) {
-        isMoving = true;
-        smoothTouch = Vector2.zero;
-        vignetteController.ShowVignette();
-      } else if (GvrControllerInput.TouchUp) {
-        StopMoving();
-      }
+        protected virtual void Update()
+        {
+            if (GvrControllerInput.TouchDown)
+            {
+                initTouch = GvrControllerInput.TouchPos;
+            }
+            else if (CanStartMoving())
+            {
+                isMoving = true;
+                smoothTouch = Vector2.zero;
+                vignetteController.ShowVignette();
+            }
+            else if (GvrControllerInput.TouchUp)
+            {
+                StopMoving();
+            }
 
-      if (isMoving) {
-        Move();
-      }
-    }
+            if (isMoving)
+            {
+                if (DaydreamControllerInput.GetButtonDown(GvrControllerButton.TouchPadButton))
+                {
+                    isWalking = !isWalking;
+                    if (isWalking)
+                    {
+                        maxSpeed = 100f;
+                    }
+                    else
+                    {
+                        maxSpeed = 300f;
+                    }
+                }
+                Move();
+            }
+        }
 
     protected virtual void Move() {
       Vector2 touchPos = GvrControllerInput.TouchPosCentered;
