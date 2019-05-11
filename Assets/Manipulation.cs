@@ -7,6 +7,7 @@ public class Manipulation : MonoBehaviour
 {
     // Start is called before the first frame update
 
+
     public Material inactiveMaterial;
     public Material gazedAtMaterial;
     private Renderer myRenderer;
@@ -43,7 +44,6 @@ public class Manipulation : MonoBehaviour
             return;
         }
     }
-
 
     public void Rotate() {
 
