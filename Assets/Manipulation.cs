@@ -11,6 +11,11 @@ public class Manipulation : MonoBehaviour
     public Material gazedAtMaterial;
     private Renderer myRenderer;
     public GameObject pointer;
+    public float xAngle, yAngle, zAngle;
+    public Vector3 initialPosition;
+    public Vector3 currentScale;
+
+    public float transformX, transformY, transformZ;
 
 
     void Start()
@@ -18,7 +23,10 @@ public class Manipulation : MonoBehaviour
       myRenderer = GetComponent<Renderer>();
       SetGazedAt(false);
       //pointer = GameObject.Find("ControllerPointerParent");
-      Debug.Log(pointer.gameObject.transform.position);
+      //initialPosition = GvrPointerInputModule.Pointer.PointerTransform;
+      //get initial object of Brick
+      initialPosition = gameObject.transform.position;
+      currentScale = gameObject.transform.localScale;
 
       //gameObject.AddListener(EventTriggerType.PointerDown, Hold);
       //gameObject.AddListener(EventTriggerType.PointerUp, Release);
@@ -29,7 +37,6 @@ public class Manipulation : MonoBehaviour
     public void SetGazedAt(bool gazedAt)
     {
         Debug.Log("in set gazed at");
-        Debug.Log(pointer.gameObject.transform.position);
         if (inactiveMaterial != null && gazedAtMaterial != null)
         {
             myRenderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial;
@@ -40,55 +47,39 @@ public class Manipulation : MonoBehaviour
 
     public void Rotate() {
 
-      Transform pointerTransform = GvrPointerInputModule.Pointer.PointerTransform;
+        Transform diff = GvrPointerInputModule.Pointer.PointerTransform;
+        //Transform diff = currentPosition.position - initialPosition.position;
 
+        xAngle = diff.eulerAngles.x;
+        yAngle = diff.eulerAngles.y;
+        zAngle = diff.eulerAngles.z;
 
+        Debug.Log(new Vector3(xAngle, yAngle, zAngle));
+        this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
+    }
+
+    public void Transform() {
+
+        currentScale = gameObject.transform.localScale;
+        float currentScaleX = currentScale.x + 10f;
+        float currentScaleY = currentScale.y + 10f;
+        float currentScaleZ = currentScale.z + 10f;
+        transform.localScale = new Vector3(currentScaleX, currentScaleY, currentScaleZ);
 
     }
 
-    public void Release() {
 
-
-
-
-    }
     public void Hold() {
 
         Transform pointerTransform = GvrPointerInputModule.Pointer.PointerTransform;
         transform.SetParent(pointerTransform, false);
     }
 
+
     public void Release() {
-
-      transform.SetParent(null, true);
-
+        transform.SetParent(null, true);
     }
 
-
-
-    /*
-    public void Translate() {
-
-      Debug.Log("in translate");
-      Debug.Log("position is");
-      Debug.Log(this.gameObject.transform.position);
-
-    } */
-
-
-    /*
-    public void OnBeginDrag(PointerEventData data)
-    {
-        Debug.Log("OnBeginDrag called.");
-    } */
-
-    /*
-    public void OnBeginDrag(PointerEventData data) {
-
-      Debug.Log("beginning to drag");
-      Debug.Log("data");
-      this.gameObject.transform.position = data.position;
-    } */
 
     // Update is called once per frame
     void Update()

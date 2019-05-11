@@ -673,7 +673,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 47246229}
-          m_MethodName: Hold
+          m_MethodName: Transform
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -718,6 +718,13 @@ MonoBehaviour:
   inactiveMaterial: {fileID: 2100000, guid: 50486411e184345a18fac6995f51e99e, type: 2}
   gazedAtMaterial: {fileID: 2100000, guid: e149d3470b3d645da99db6270b3dea74, type: 2}
   pointer: {fileID: 960180656}
+  xAngle: 0
+  yAngle: 0
+  zAngle: 0
+  initialPosition: {x: 0, y: 0, z: 0}
+  transformX: 0
+  transformY: 0
+  transformZ: 0
 --- !u!1 &95862354
 GameObject:
   m_ObjectHideFlags: 0
