@@ -555,8 +555,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47246223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 200}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalPosition: {x: -50, y: 0, z: -20}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 1247912009}
   m_Father: {fileID: 960180657}
@@ -673,7 +673,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 47246229}
-          m_MethodName: Transform
+          m_MethodName: Rotate
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -722,6 +722,7 @@ MonoBehaviour:
   yAngle: 0
   zAngle: 0
   initialPosition: {x: 0, y: 0, z: 0}
+  currentScale: {x: 0, y: 0, z: 0}
   transformX: 0
   transformY: 0
   transformZ: 0
@@ -4310,6 +4311,34 @@ PrefabInstance:
       propertyPath: m_TagString
       value: selectable
       objectReference: {fileID: 0}
+    - target: {fileID: 404186, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 404186, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104940, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104944, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104948, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 104950, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105054, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
 --- !u!1001 &675353546
@@ -6083,6 +6112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 960180657}
   - component: {fileID: 960180658}
+  - component: {fileID: 960180659}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6098,7 +6128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960180656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85, y: 150, z: -500}
+  m_LocalPosition: {x: 85, y: 150, z: 1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1515812723}
@@ -6131,6 +6161,19 @@ MonoBehaviour:
   vignetteController: {fileID: 1623155953}
   walkToggle: {fileID: 992470543}
   elevatorToggle: {fileID: 1390526267}
+--- !u!114 &960180659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960180656}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90d3f1d25a8a4dd6b768046e9a44d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brickObjs: []
 --- !u!1 &992470541
 GameObject:
   m_ObjectHideFlags: 0
@@ -8696,7 +8739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1820761120, guid: 34c21f523e72f45509a4e37ed0293c3b, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1820761120, guid: 34c21f523e72f45509a4e37ed0293c3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9189,7 +9232,6 @@ GameObject:
   - component: {fileID: 1515812722}
   - component: {fileID: 1515812721}
   - component: {fileID: 1515812724}
-  - component: {fileID: 1515812725}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9328,19 +9370,6 @@ MonoBehaviour:
   carbonToggle: {fileID: 951873661}
   currSelectedObj: {fileID: 0}
   HandheldController: {fileID: 1490550201}
---- !u!114 &1515812725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515812718}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a90d3f1d25a8a4dd6b768046e9a44d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brickObjs: []
 --- !u!4 &1517625391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1820761120, guid: 34c21f523e72f45509a4e37ed0293c3b,

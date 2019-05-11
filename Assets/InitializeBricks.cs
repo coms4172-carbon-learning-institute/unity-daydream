@@ -10,6 +10,7 @@ public class InitializeBricks : MonoBehaviour
     public GameObject[] brickObjs;
 
 
+
     void Start()
     {
         brickObjs = GameObject.FindGameObjectsWithTag("brick");
@@ -22,27 +23,25 @@ public class InitializeBricks : MonoBehaviour
 
 
             //depending on the boolean
-            if (gameObject.GetComponent<ButtonManipulationController>.translate == true) {
+            if (gameObject.GetComponent<ButtonManipulationController>().translate == true) {
 
-                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Hold();
+                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Hold());
 
-            } else if (gameObject.GetComponent<ButtonManipulationController>.transform == false) {
+            } else if (gameObject.GetComponent<ButtonManipulationController>().transform == false) {
 
-                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Transform();
+                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Transform());
 
             } else {
 
-                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Rotate();
+                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Rotate());
 
             }
 
             eventTrigger.triggers.Add(entry1);
 
-
-            EventTrigger eventTrigger = obj.AddComponent<EventTrigger>();
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
             entry2.eventID = EventTriggerType.PointerUp;
-            entry2.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Release();
+            entry2.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Release());
             eventTrigger.triggers.Add(entry2);
         }
     }

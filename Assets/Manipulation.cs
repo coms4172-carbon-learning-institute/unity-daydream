@@ -15,6 +15,9 @@ public class Manipulation : MonoBehaviour
     public float xAngle, yAngle, zAngle;
     public Vector3 initialPosition;
     public Vector3 currentScale;
+    private Vector2? initTouch = null;
+    public float minInputThreshold;
+    public float maxInputThreshold;
 
     public float transformX, transformY, transformZ;
 
@@ -28,12 +31,24 @@ public class Manipulation : MonoBehaviour
       //get initial object of Brick
       initialPosition = gameObject.transform.position;
       currentScale = gameObject.transform.localScale;
+      minInputThreshold = 0.3f;
+      maxInputThreshold = 0.65f;
 
-      //gameObject.AddListener(EventTriggerType.PointerDown, Hold);
-      //gameObject.AddListener(EventTriggerType.PointerUp, Release);
     }
 
 
+    private bool IsTouchTranslating(Vector2 touchPos) {
+
+        initTouch = GvrControllerInput.TouchPos;
+        return Mathf.Abs(touchPos.y) > minInputThreshold;
+
+    }
+
+    private bool IsTouchRotating(Vector2 touchPos) {
+
+        initTouch = GvrControllerInput.TouchPos;
+        return Mathf.Abs(touchPos.x) > minInputThreshold;
+    }
 
     public void SetGazedAt(bool gazedAt)
     {
@@ -72,7 +87,9 @@ public class Manipulation : MonoBehaviour
     public void Hold() {
 
         Transform pointerTransform = GvrPointerInputModule.Pointer.PointerTransform;
-        transform.SetParent(pointerTransform, false);
+        //transform.position = pointerTransform;
+        transform.SetParent(pointerTransform, true);
+
     }
 
 

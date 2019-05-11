@@ -114,7 +114,7 @@ public class GvrPointerGraphicRaycaster : GvrBasePointerRaycaster
                                            PointerEventData eventData,
                                            List<RaycastResult> resultAppendList)
     {
-        pointerRay.distance = 1000.0f;
+        pointerRay.distance = 5.0f;
         if (targetCanvas == null)
         {
             targetCanvas = GetComponent<Canvas>();
