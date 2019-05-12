@@ -68,6 +68,10 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
     /// <summary>
     /// Initializes a new instance of the <see cref="GvrPointerPhysicsRaycaster" /> class.
     /// </summary>
+
+    //get InClassroom boolean
+    private bool InClassroom;
+
     protected GvrPointerPhysicsRaycaster()
     {
     }
@@ -172,7 +176,22 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
                                            PointerEventData eventData,
                                            List<RaycastResult> resultAppendList)
     {
-        pointerRay.distance = 1000.0f;
+
+       InClassroom = gameObject.GetComponent<ElevatorZone>().InClassroom;
+       Debug.Log(InClassroom);
+      //if in a classroom
+        if (InClassroom) {
+
+          pointerRay.distance = 10f;
+
+
+        } else {
+
+          pointerRay.distance = 1000.0f;
+
+        }
+
+
         if (eventCamera == null)
         {
             return false;

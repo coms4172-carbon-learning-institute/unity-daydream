@@ -15,7 +15,7 @@ public class Manipulation : MonoBehaviour
     public float xAngle, yAngle, zAngle;
     public Vector3 initialPosition;
     public Vector3 currentScale;
-    private Vector2? initTouch = null;
+    private Vector2 initTouch;
     public float minInputThreshold;
     public float maxInputThreshold;
 
@@ -24,11 +24,14 @@ public class Manipulation : MonoBehaviour
 
     void Start()
     {
+
       myRenderer = GetComponent<Renderer>();
       SetGazedAt(false);
+
       //pointer = GameObject.Find("ControllerPointerParent");
       //initialPosition = GvrPointerInputModule.Pointer.PointerTransform;
       //get initial object of Brick
+
       initialPosition = gameObject.transform.position;
       currentScale = gameObject.transform.localScale;
       minInputThreshold = 0.3f;
@@ -36,18 +39,16 @@ public class Manipulation : MonoBehaviour
 
     }
 
+    private bool IsTouchTransformation(Vector2 touchPos) {
 
-    private bool IsTouchTranslating(Vector2 touchPos) {
-
-        initTouch = GvrControllerInput.TouchPos;
         return Mathf.Abs(touchPos.y) > minInputThreshold;
 
     }
 
     private bool IsTouchRotating(Vector2 touchPos) {
 
-        initTouch = GvrControllerInput.TouchPos;
         return Mathf.Abs(touchPos.x) > minInputThreshold;
+
     }
 
     public void SetGazedAt(bool gazedAt)
@@ -62,6 +63,8 @@ public class Manipulation : MonoBehaviour
 
     public void Rotate() {
 
+
+        initTouch = GvrControllerInput.TouchPos;
         Transform diff = GvrPointerInputModule.Pointer.PointerTransform;
         //Transform diff = currentPosition.position - initialPosition.position;
 
@@ -70,16 +73,54 @@ public class Manipulation : MonoBehaviour
         zAngle = diff.eulerAngles.z;
 
         Debug.Log(new Vector3(xAngle, yAngle, zAngle));
-        this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
+
+        //if the position is on the right side
+        if (IsTouchRotating(initTouch)) {
+
+            this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
+
+        } else {
+
+
+            this.gameObject.transform.Rotate(-1f * xAngle, -1f * yAngle, -1f * zAngle, Space.World);
+
+        }
     }
 
     public void Transform() {
 
-        currentScale = gameObject.transform.localScale;
+        float diff = 10f;
+
         float currentScaleX = currentScale.x + 10f;
         float currentScaleY = currentScale.y + 10f;
         float currentScaleZ = currentScale.z + 10f;
+
+        currentScale = gameObject.transform.localScale;
+
+        if (IsTouchTransformation(initTouch)) {
+
+            Debug.Log("in top half");
+            currentScaleX = currentScale.x + 10f;
+            currentScaleY = currentScale.y + 10f;
+            currentScaleZ = currentScale.z + 10f;
+
+        } else {
+
+            Debug.Log("in bottom half");
+          //don't make the brick disappear if already the scale of (10f, 10f, 10f)
+            if (currentScale.x != 10f && currentScale.y != 10f && currentScale.z != 10f) {
+
+                currentScaleX = currentScale.x - 5f;
+                currentScaleY = currentScale.y - 5f;
+                currentScaleZ = currentScale.z - 5f;
+
+            }
+
+        }
+
         transform.localScale = new Vector3(currentScaleX, currentScaleY, currentScaleZ);
+        this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
+
 
     }
 

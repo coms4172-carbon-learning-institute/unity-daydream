@@ -9,6 +9,7 @@ TagManager:
   - Frame
   - Minimap Stairs
   - 'brick '
+  - Target Pod
   layers:
   - Default
   - TransparentFX
