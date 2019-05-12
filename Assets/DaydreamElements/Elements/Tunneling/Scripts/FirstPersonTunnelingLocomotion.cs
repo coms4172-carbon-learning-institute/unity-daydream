@@ -106,15 +106,17 @@ namespace DaydreamElements.Tunneling {
 
             if (isMoving)
             {
-                if (DaydreamControllerInput.GetButtonDown(GvrControllerButton.TouchPadButton))
+                if (walkToggle.isOn && DaydreamControllerInput.GetButtonUp(GvrControllerButton.TouchPadButton))
                 {
                     isWalking = !isWalking;
+                    Debug.Log("isWalking: " + isWalking);
                     if (isWalking)
                     {
                         maxSpeed = 100f;
                     }
                     else
                     {
+                        Debug.Log("Running Mode");
                         maxSpeed = 300f;
                     }
                 }
