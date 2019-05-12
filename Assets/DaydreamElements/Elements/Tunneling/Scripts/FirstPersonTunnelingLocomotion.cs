@@ -28,7 +28,7 @@ namespace DaydreamElements.Tunneling {
   public class FirstPersonTunnelingLocomotion : MonoBehaviour {
     [Tooltip("The max speed to translate the camera (meters per second).")]
     public float maxSpeed = 7.0f;
-    public bool isWalking = true;
+    private bool isWalking = true;
     public GameObject HandheldController;
     private GvrControllerInputDevice DaydreamControllerInput;
        
@@ -62,7 +62,6 @@ namespace DaydreamElements.Tunneling {
     public Toggle elevatorToggle;
     
     private bool isMoving = false;
-    private bool isElevator = false;
 
     private CharacterController characterController;
     private Vector2 smoothTouch = Vector2.zero;
@@ -109,16 +108,8 @@ namespace DaydreamElements.Tunneling {
                 if (walkToggle.isOn && DaydreamControllerInput.GetButtonUp(GvrControllerButton.TouchPadButton))
                 {
                     isWalking = !isWalking;
-                    Debug.Log("isWalking: " + isWalking);
-                    if (isWalking)
-                    {
-                        maxSpeed = 100f;
-                    }
-                    else
-                    {
-                        Debug.Log("Running Mode");
-                        maxSpeed = 300f;
-                    }
+                    // if walking, max speed is lower
+                    maxSpeed = isWalking ? 100f : 300f;
                 }
                 Move();
             }
