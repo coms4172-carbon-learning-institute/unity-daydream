@@ -153,10 +153,7 @@ namespace DaydreamElements.Tunneling {
 
         if (walkToggle.isOn){
           ApplyTranslation(dt);
-        } else if (elevatorToggle.isOn){
-          ApplyElevatorTranslation(dt);
-        }
-        
+        } 
       }
     }
 
@@ -178,23 +175,6 @@ namespace DaydreamElements.Tunneling {
       forwardSpeed =  maxSpeed * smoothTouch.y;
       speed.text = "Traveling speed: " + forwardSpeed.ToString("F2");
       Vector3 velocity = new Vector3(0.0f, 0.0f, forwardSpeed);
-
-      Quaternion cameraRotation = Camera.main.transform.rotation;
-      cameraRotation = Quaternion.Euler(new Vector3(0.0f, cameraRotation.eulerAngles.y, 0.0f));
-      Vector3 rotatedVelocity = cameraRotation * velocity;
-
-      if (characterController != null) {
-        characterController.SimpleMove(rotatedVelocity);
-      } else {
-        Vector3 position = transform.position;
-        position += rotatedVelocity * dt;
-        transform.position = position;
-      }
-    }
-
-    private void ApplyElevatorTranslation(float dt){
-      float forwardSpeed =  maxSpeed * smoothTouch.y;
-      Vector3 velocity = new Vector3(0.0f, forwardSpeed, 0.0f );
 
       Quaternion cameraRotation = Camera.main.transform.rotation;
       cameraRotation = Quaternion.Euler(new Vector3(0.0f, cameraRotation.eulerAngles.y, 0.0f));
@@ -264,7 +244,7 @@ namespace DaydreamElements.Tunneling {
         return false;
       }
 
-      if (!walkToggle.isOn && !elevatorToggle.isOn){
+      if (!walkToggle.isOn){
         return false;
       }
 
