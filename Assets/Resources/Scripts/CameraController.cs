@@ -57,7 +57,7 @@ public class CameraController : MonoBehaviour
         infoMat_dict.Add("Frame", "Frame_material");
         carbon_dict.Add("Frame", -900f);
 
-        selectedBricks = GameObject.FindGameObjectsWithTag("brick");
+        selectedBricks = GameObject.FindGameObjectsWithTag("Brick");
         Debug.Log(selectedBricks);
 
         // get min and max of carbon_dict values

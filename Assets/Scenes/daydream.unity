@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 47246228}
   m_Layer: 0
   m_Name: Brick
-  m_TagString: 'brick '
+  m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1406,15 +1406,15 @@ PrefabInstance:
     - target: {fileID: 1929075002, guid: 760a15b4dd09d4c27a881cede3e9821f, type: 3}
       propertyPath: irisContainer
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2011887423}
     - target: {fileID: 1929075002, guid: 760a15b4dd09d4c27a881cede3e9821f, type: 3}
       propertyPath: iris
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 407333900}
     - target: {fileID: 1929075002, guid: 760a15b4dd09d4c27a881cede3e9821f, type: 3}
       propertyPath: cage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1968409583}
     - target: {fileID: 1929075002, guid: 760a15b4dd09d4c27a881cede3e9821f, type: 3}
       propertyPath: cageColor.r
       value: 0.25
@@ -2519,6 +2519,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6780142131141948670, guid: ce3c24290395149478c5510b92fd32df,
     type: 3}
   m_PrefabInstance: {fileID: 368371178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &407333900 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23794562664046626, guid: 760a15b4dd09d4c27a881cede3e9821f,
+    type: 3}
+  m_PrefabInstance: {fileID: 184250116}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &414781197
 GameObject:
@@ -10894,7 +10900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1714836868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12555,6 +12561,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1933275369}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1968409583 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2005958615, guid: 760a15b4dd09d4c27a881cede3e9821f,
+    type: 3}
+  m_PrefabInstance: {fileID: 184250116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1970664703
 GameObject:
   m_ObjectHideFlags: 0
@@ -12866,6 +12878,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 53414ab72ac45614684af7a6985b2c85,
     type: 3}
   m_PrefabInstance: {fileID: 2009251640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2011887423 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4482722466042190, guid: 760a15b4dd09d4c27a881cede3e9821f,
+    type: 3}
+  m_PrefabInstance: {fileID: 184250116}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2019962789
 GameObject:
