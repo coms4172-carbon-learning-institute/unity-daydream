@@ -20213,7 +20213,182 @@ ModelImporter:
     4308046: Object_4027
     4308048: Object_4028
     4308050: Object_4029
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_2
+    second: {fileID: 2100000, guid: 2d965717c0aaf4f418ed4d8d0896acc0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_2503
+    second: {fileID: 2100000, guid: 16f70bfe2d4ab462db351e6d978864ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_93
+    second: {fileID: 2100000, guid: 99b20a82531b44e789b02e74c60cbea2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Bricks_A03_1m
+    second: {fileID: 2100000, guid: 62a83158d1b6242fdab5d7dcd2dc62c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Clay_C02_100cm
+    second: {fileID: 2100000, guid: dc6667cdcaa914230b091c4869b08a50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Generic10
+    second: {fileID: 2100000, guid: 288f6e08f748a463fa49bdd8ea86bc75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Generic11
+    second: {fileID: 2100000, guid: def0b2e6b44ee4e0f8f4f9629079a514, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Generic2
+    second: {fileID: 2100000, guid: 4edc70ecfcd324b1fbb334a25580a4dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Generic3
+    second: {fileID: 2100000, guid: a5644d470aec240939e167934bce8cfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Generic4
+    second: {fileID: 2100000, guid: ebdf5439b7a33484cb31a2016beaf80a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Generic5
+    second: {fileID: 2100000, guid: c824ee0ba9cd2424798dc036c5b62e5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Generic6
+    second: {fileID: 2100000, guid: 5b123f61c3e2a40e1a947f314ad721fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Generic9
+    second: {fileID: 2100000, guid: de687da0d53ac451f992889f25c1e55d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Glass
+    second: {fileID: 2100000, guid: ae9766ec64fff48f0be27963ff814452, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Grass_A_200cm
+    second: {fileID: 2100000, guid: 6deea2d7dc65a477f992680b22ce8ccd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _MaquetteWood_B01_12cm
+    second: {fileID: 2100000, guid: 9115e25e556e94e90b2a4ac3368155a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Marble_A_150cm
+    second: {fileID: 2100000, guid: 9ad65423ec2ad4811bede7a2ff754bd5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Plastic_Translucent_03_Green
+    second: {fileID: 2100000, guid: b5f1b55a1097043629186cf4f7d67629, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Veneer_B01_120cm
+    second: {fileID: 2100000, guid: e78bea194bc4e45b9b5163a3081f3301, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _WallPaint_Bumpy_01_Blue_1m
+    second: {fileID: 2100000, guid: 323856438dd11404596b54ac1613859b, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bricks_A_Bump_01
+    second: {fileID: 2800000, guid: ee46d121848494f4599c6d1fcfa7a34d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bricks_A_Diff_01
+    second: {fileID: 2800000, guid: dd8336e0f71b74c298b0f31fcb6e5169, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Clay_C_Bump_01
+    second: {fileID: 2800000, guid: 33b4440d254e3460696d89dd53888363, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Clay_C_Diff_02
+    second: {fileID: 2800000, guid: 5a5a0a99edcd9406ea062186921ffbbd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grass_A_Bump
+    second: {fileID: 2800000, guid: 477e7574d1cec4bf6b3d784bc27ed054, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Grass_A_Diff
+    second: {fileID: 2800000, guid: ba4e666a1f2b743bc8f85427d56e2c1e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Laminate_B01_Diff
+    second: {fileID: 2800000, guid: 5e4f45774ac4a46a297a1394f73cd272, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Maquette_Wood_B_Bump
+    second: {fileID: 2800000, guid: e6fd0831300404a9da10a6571ebcb9e5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Maquette_Wood_B_Diff
+    second: {fileID: 2800000, guid: 591e510715fb44424ad38d4df15c401b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Marble_A_Bump
+    second: {fileID: 2800000, guid: 5c8e297d0924f4227b02f7075dad4fe1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Marble_A_Diff
+    second: {fileID: 2800000, guid: 19d04daf4df10498fbc7e47922e25da7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Porcelain_C_Bump
+    second: {fileID: 2800000, guid: db646deee135a47a5885086ce40394e0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Porcelain_C_Mask_01
+    second: {fileID: 2800000, guid: 3ec028ff3f3ac4735bfbd74e2499b2b2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Stone_Flagstone_Ashlar
+    second: {fileID: 2800000, guid: 34a1453d02eff44dbb0136a51d85c010, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Veneer_B01_Bump
+    second: {fileID: 2800000, guid: 638a9c68d97564fb9b5b5ec6d11dcabd, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
