@@ -5767,7 +5767,7 @@ GameObject:
   - component: {fileID: 894474410}
   - component: {fileID: 894474411}
   m_Layer: 5
-  m_Name: Transform
+  m_Name: Scale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7660,7 +7660,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Transform
+  m_Text: Scale
 --- !u!222 &1130374113
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10020,6 +10020,10 @@ MonoBehaviour:
   info: {fileID: 919717260}
   infoTitle: {fileID: 2122266245}
   carbonToggle: {fileID: 951873661}
+  noneToggle: {fileID: 1104147082}
+  scaleToggle: {fileID: 894474411}
+  translateToggle: {fileID: 1050555629}
+  rotateToggle: {fileID: 363130242}
   currSelectedObj: {fileID: 0}
   HandheldController: {fileID: 1490550201}
 --- !u!4 &1517625391 stripped

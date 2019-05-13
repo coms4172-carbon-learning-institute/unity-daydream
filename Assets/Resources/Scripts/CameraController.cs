@@ -11,10 +11,17 @@ public class CameraController : MonoBehaviour
     public GameObject canvas;
     public GameObject panel;
     public GameObject controlPanel;
+    private GameObject[] selectedBricks;
     public RawImage rawimage;
     public Text info;
     public Text infoTitle;
     public Toggle carbonToggle;
+
+
+    public Toggle noneToggle;
+    public Toggle scaleToggle;
+    public Toggle translateToggle;
+    public Toggle rotateToggle;
 
     private Material hoverMaterial;
     public GameObject currSelectedObj;
@@ -49,6 +56,9 @@ public class CameraController : MonoBehaviour
         info_dict.Add("Frame", "Embodied carbon: - 900 Kg/Ton");
         infoMat_dict.Add("Frame", "Frame_material");
         carbon_dict.Add("Frame", -900f);
+
+        selectedBricks = GameObject.FindGameObjectsWithTag("brick");
+        Debug.Log(selectedBricks);
 
         // get min and max of carbon_dict values
         float min = float.MaxValue;
@@ -133,6 +143,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
 
+
         carbonToggle.onValueChanged.AddListener(CarbonToggleListener);
 
         if (DaydreamControllerInput.GetButtonUp(GvrControllerButton.App)) {
@@ -142,7 +153,72 @@ public class CameraController : MonoBehaviour
         }
 
 
+        noneToggle.onValueChanged.AddListener(NoneToggleListener);
+        scaleToggle.onValueChanged.AddListener(ScaleToggleListener);
+        rotateToggle.onValueChanged.AddListener(RotateToggleListener);
+        translateToggle.onValueChanged.AddListener(TranslateToggleListener);
+
+
     }
+
+    private void NoneToggleListener(bool value) {
+
+        if (noneToggle.isOn) {
+
+
+
+        }
+
+
+    }
+
+    private void ScaleToggleListener(bool value) {
+
+        if (scaleToggle.isOn) {
+
+            foreach (GameObject brick in selectedBricks) {
+
+
+                EventTrigger trigger = brick.GetComponent<EventTrigger>();
+
+                foreach(EventTrigger.Entry entry in trigger.triggers) {
+
+                    if (entry.eventID == EventTriggerType.PointerDown) {
+
+                        entry.callback.RemoveAllListeners();
+                        entry.callback.AddListener((eventData) => brick.GetComponent<Manipulation>().Transform());
+                    }
+
+                }
+
+            }
+
+
+        }
+
+
+    }
+
+    private void RotateToggleListener(bool value) {
+
+        if (rotateToggle.isOn) {
+
+
+        }
+
+
+    }
+
+    private void TranslateToggleListener(bool value) {
+
+        if (translateToggle.isOn) {
+
+
+        }
+
+    }
+
+
     private void CarbonToggleListener(bool value)
     {
         if (carbonToggle.isOn)

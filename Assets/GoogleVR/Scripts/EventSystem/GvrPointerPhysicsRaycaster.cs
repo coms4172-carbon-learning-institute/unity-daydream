@@ -193,7 +193,7 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
         }
         */
 
-        pointerRay.distance = 2.0f;
+        pointerRay.distance = 50.0f;
 
 
         if (eventCamera == null)

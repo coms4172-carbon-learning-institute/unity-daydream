@@ -18,6 +18,7 @@ public class Manipulation : MonoBehaviour
     private Vector2 initTouch;
     public float minInputThreshold;
     public float maxInputThreshold;
+    private GameObject brickToSet;
 
     public float transformX, transformY, transformZ;
 
