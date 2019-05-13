@@ -27,6 +27,7 @@ public class CanvasController : MonoBehaviour
     public GameObject mainmenu;
 
     public GameObject welcome_class;
+    public Button close_welcome_class;
     public Button Go;
     public GameObject step1;
     public Button next1;
@@ -70,6 +71,7 @@ public class CanvasController : MonoBehaviour
         close_carbongoggles.onClick.AddListener(Close_CG);
 
         Go.onClick.AddListener(ToStep1);
+        close_welcome_class.onClick.AddListener(ExitWelcomeClass);
         next1.onClick.AddListener(ToStep2);
         next2.onClick.AddListener(ToStep3);
         next3.onClick.AddListener(ToFinish);
@@ -123,6 +125,10 @@ public class CanvasController : MonoBehaviour
     {
         carbongoggles.SetActive(false);
         mainmenu.SetActive(true);
+    }
+    void ExitWelcomeClass()
+    {
+        welcome_class.SetActive(false);
     }
     void ToStep1()
     {
