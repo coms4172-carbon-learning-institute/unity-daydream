@@ -70,6 +70,10 @@ namespace DaydreamElements.Tunneling {
     private const float SLOP_VERTICAL = 0.165f;
     private const float SLOP_HORIZONTAL = 0.15f;
 
+    public GameObject running_panel; //visually indicate that the player is running
+    public GameObject tunnelspeed;
+        public float forwardSpeed;
+
     void Awake() {
       // Used for movement if it exists. Otherwise, this script modifies the transform directly.
       characterController = GetComponent<CharacterController>();
@@ -79,7 +83,6 @@ namespace DaydreamElements.Tunneling {
     private void Start()
     {
         DaydreamControllerInput = HandheldController.GetComponent<GvrTrackedController>().ControllerInputDevice;
-
     }
 
         void OnDisable() {
@@ -110,6 +113,15 @@ namespace DaydreamElements.Tunneling {
                     isWalking = !isWalking;
                     // if walking, max speed is lower
                     maxSpeed = isWalking ? 100f : 300f;
+                    //if walking, running panel is off
+                    if (isWalking)
+                    {
+                        running_panel.SetActive(false);
+                    }
+                    else
+                    {
+                        running_panel.SetActive(true);
+                    }
                 }
                 Move();
             }
@@ -162,8 +174,10 @@ namespace DaydreamElements.Tunneling {
       transform.rotation = rotation;
     }
 
-    private void ApplyTranslation(float dt) {
-      float forwardSpeed =  maxSpeed * smoothTouch.y;
+    public void ApplyTranslation(float dt) {    
+      forwardSpeed =  maxSpeed * smoothTouch.y;
+      Debug.Log(forwardSpeed);
+      tunnelspeed.GetComponent<Text>().text = "Traveling speed: " + forwardSpeed;
       Vector3 velocity = new Vector3(0.0f, 0.0f, forwardSpeed);
 
       Quaternion cameraRotation = Camera.main.transform.rotation;

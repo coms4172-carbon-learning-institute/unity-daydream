@@ -49,9 +49,9 @@ public class CameraController : MonoBehaviour
         selectedObjs = GameObject.FindGameObjectsWithTag("selectable");
 
         infoTitle_dict.Add("Farming", "CLT(Cross Laminated Timber)");
-        info_dict.Add("Farming", "Embodied carbon: - 460 Kg/Ton");
+        info_dict.Add("Farming", "Embodied carbon: - 900 Kg/Ton");
         infoMat_dict.Add("Farming", "Farming_material");
-        carbon_dict.Add("Farming", -460f);
+        carbon_dict.Add("Farming", -900f);
 
         infoTitle_dict.Add("Frame", "BIOCHAR Brick");
         info_dict.Add("Frame", "Embodied carbon: - 900 Kg/Ton");
@@ -81,7 +81,10 @@ public class CameraController : MonoBehaviour
         //print(scale(min, max, -500.0f));
         //print(scale(min, max, -460.0f));
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> visual indication of running, workingo n displaying tunnel speed
         foreach (GameObject obj in selectedObjs)
         {
             currentObjMaterial = obj.GetComponent<Renderer>().material;
