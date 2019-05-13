@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ElevatorZone : MonoBehaviour
 {
     public GameObject elevatormode;
+    public GameObject discGlassParent;
 
     void Start()
     {
@@ -17,6 +18,11 @@ public class ElevatorZone : MonoBehaviour
         if (other.CompareTag("Minimap Stairs"))
         {
             elevatormode.SetActive(true);
+        }
+        if (other.CompareTag("Classroom"))
+        {
+            Debug.Log("Entered Classroom");
+            discGlassParent.SetActive(false);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -31,6 +37,11 @@ public class ElevatorZone : MonoBehaviour
         if (other.CompareTag("Minimap Stairs"))
         {
             elevatormode.SetActive(false);
+        }
+        if (other.CompareTag("Classroom"))
+        {
+            Debug.Log("Exited Classroom");
+            discGlassParent.SetActive(false);
         }
     }
 }

@@ -8,7 +8,10 @@ TagManager:
   - Farming
   - Frame
   - Minimap Stairs
+  - 'brick '
+  - Target Pod
   - Brick
+  - Brick Object
   layers:
   - Default
   - TransparentFX

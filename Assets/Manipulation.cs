@@ -20,35 +20,37 @@ public class Manipulation : MonoBehaviour
     public float maxInputThreshold;
     private GameObject brickToSet;
 
+    public GameObject brickParent;
+
     public float transformX, transformY, transformZ;
 
 
     void Start()
     {
 
-        myRenderer = GetComponent<Renderer>();
-        SetGazedAt(false);
+      myRenderer = GetComponent<Renderer>();
+      SetGazedAt(false);
 
-        //pointer = GameObject.Find("ControllerPointerParent");
-        //initialPosition = GvrPointerInputModule.Pointer.PointerTransform;
-        //get initial object of Brick
+      //pointer = GameObject.Find("ControllerPointerParent");
+      //initialPosition = GvrPointerInputModule.Pointer.PointerTransform;
+      //get initial object of Brick
 
-        initialPosition = gameObject.transform.position;
-        currentScale = gameObject.transform.localScale;
-        minInputThreshold = 0.3f;
-        maxInputThreshold = 0.65f;
+      initialPosition = gameObject.transform.position;
+      currentScale = gameObject.transform.localScale;
+      minInputThreshold = 0.3f;
+      maxInputThreshold = 0.65f;
+
+
 
     }
 
-    private bool IsTouchTransformation(Vector2 touchPos)
-    {
+    private bool IsTouchTransformation(Vector2 touchPos) {
 
         return Mathf.Abs(touchPos.y) > minInputThreshold;
 
     }
 
-    private bool IsTouchRotating(Vector2 touchPos)
-    {
+    private bool IsTouchRotating(Vector2 touchPos) {
 
         return Mathf.Abs(touchPos.x) > minInputThreshold;
 
@@ -56,6 +58,9 @@ public class Manipulation : MonoBehaviour
 
     public void SetGazedAt(bool gazedAt)
     {
+
+        gameObject.transform.SetParent(brickParent.transform);
+
         Debug.Log("in set gazed at");
         if (inactiveMaterial != null && gazedAtMaterial != null)
         {
@@ -64,29 +69,28 @@ public class Manipulation : MonoBehaviour
         }
     }
 
-    public void Rotate()
-    {
+    public void Rotate() {
 
 
-        initTouch = GvrControllerInput.TouchPos;
-        Transform diff = GvrPointerInputModule.Pointer.PointerTransform;
+        //initTouch = GvrControllerInput.TouchPos;
+        //Transform diff = GvrPointerInputModule.Pointer.PointerTransform;
         //Transform diff = currentPosition.position - initialPosition.position;
-
+        /*
         xAngle = diff.eulerAngles.x;
         yAngle = diff.eulerAngles.y;
         zAngle = diff.eulerAngles.z;
+        */
 
-        Debug.Log(new Vector3(xAngle, yAngle, zAngle));
+        yAngle = 45f;
+
+        //Debug.Log(new Vector3(xAngle, yAngle, zAngle));
 
         //if the position is on the right side
-        if (IsTouchRotating(initTouch))
-        {
+        if (IsTouchRotating(initTouch)) {
 
             this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
 
-        }
-        else
-        {
+        } else {
 
 
             this.gameObject.transform.Rotate(-1f * xAngle, -1f * yAngle, -1f * zAngle, Space.World);
@@ -94,8 +98,7 @@ public class Manipulation : MonoBehaviour
         }
     }
 
-    public void Transform()
-    {
+    public void Transform() {
 
         float diff = 10f;
 
@@ -105,22 +108,18 @@ public class Manipulation : MonoBehaviour
 
         currentScale = gameObject.transform.localScale;
 
-        if (IsTouchTransformation(initTouch))
-        {
+        if (IsTouchTransformation(initTouch)) {
 
             Debug.Log("in top half");
             currentScaleX = currentScale.x + 10f;
             currentScaleY = currentScale.y + 10f;
             currentScaleZ = currentScale.z + 10f;
 
-        }
-        else
-        {
+        } else {
 
             Debug.Log("in bottom half");
-            //don't make the brick disappear if already the scale of (10f, 10f, 10f)
-            if (currentScale.x != 10f && currentScale.y != 10f && currentScale.z != 10f)
-            {
+          //don't make the brick disappear if already the scale of (10f, 10f, 10f)
+            if (currentScale.x != 10f && currentScale.y != 10f && currentScale.z != 10f) {
 
                 currentScaleX = currentScale.x - 5f;
                 currentScaleY = currentScale.y - 5f;
@@ -137,8 +136,7 @@ public class Manipulation : MonoBehaviour
     }
 
 
-    public void Hold()
-    {
+    public void Hold() {
 
         Transform pointerTransform = GvrPointerInputModule.Pointer.PointerTransform;
         //transform.position = pointerTransform;
@@ -147,8 +145,7 @@ public class Manipulation : MonoBehaviour
     }
 
 
-    public void Release()
-    {
+    public void Release() {
         transform.SetParent(null, true);
     }
 
