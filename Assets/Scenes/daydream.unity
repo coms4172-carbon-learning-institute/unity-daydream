@@ -8963,7 +8963,7 @@ MonoBehaviour:
   walkToggle: {fileID: 992470543}
   elevatorToggle: {fileID: 1390526267}
   running_panel: {fileID: 788954191}
-  tunnelspeed: {fileID: 1110352077}
+  speed: {fileID: 1329229168}
   forwardSpeed: 0
 --- !u!1 &981827065
 GameObject:
