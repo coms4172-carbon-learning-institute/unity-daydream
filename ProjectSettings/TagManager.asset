@@ -7,6 +7,12 @@ TagManager:
   - selectable
   - Farming
   - Frame
+  - Minimap Stairs
+  - 'brick '
+  - Target Pod
+  - Brick
+  - Brick Object
+  - Classroom
   layers:
   - Default
   - TransparentFX

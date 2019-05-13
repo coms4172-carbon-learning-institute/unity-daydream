@@ -7,14 +7,22 @@ using UnityEngine.EventSystems;
 public class CameraController : MonoBehaviour
 {
     public GameObject[] selectedObjs;
+    public GameObject[] brickObjs;
     public Material currentObjMaterial;
     public GameObject canvas;
     public GameObject panel;
     public GameObject controlPanel;
+    public GameObject manPanel;
     public RawImage rawimage;
     public Text info;
     public Text infoTitle;
     public Toggle carbonToggle;
+
+    private GameObject[] selectedBricks;
+    public Toggle noneToggle;
+    public Toggle scaleToggle;
+    public Toggle translateToggle;
+    public Toggle rotateToggle;
 
     private Material hoverMaterial;
     public GameObject currSelectedObj;
@@ -50,6 +58,8 @@ public class CameraController : MonoBehaviour
         infoMat_dict.Add("Frame", "Frame_material");
         carbon_dict.Add("Frame", -900f);
 
+        selectedBricks = GameObject.FindGameObjectsWithTag("Brick");
+
         // get min and max of carbon_dict values
         float min = float.MaxValue;
         float max = float.MinValue;
@@ -72,10 +82,6 @@ public class CameraController : MonoBehaviour
         //print(scale(min, max, -460.0f));
 
 
-
-
-
-
         foreach (GameObject obj in selectedObjs)
         {
             currentObjMaterial = obj.GetComponent<Renderer>().material;
@@ -94,7 +100,7 @@ public class CameraController : MonoBehaviour
             obj.GetComponent<CustomObjectController>().rawimage = rawimage;
             obj.GetComponent<CustomObjectController>().info = info;
             obj.GetComponent<CustomObjectController>().infoTitle = infoTitle;
-      
+
 
             //pointerEnter
 
@@ -121,6 +127,62 @@ public class CameraController : MonoBehaviour
         }
 
         DaydreamControllerInput = HandheldController.GetComponent<GvrTrackedController>().ControllerInputDevice;
+
+        //start of brick initialization (should be in update?)
+        //upon click of UI panel and depending on step, initialize # of bricks
+        brickObjs = GameObject.FindGameObjectsWithTag("Brick");
+
+        foreach (GameObject obj in brickObjs) {
+
+            EventTrigger eventTrigger = obj.AddComponent<EventTrigger>();
+            EventTrigger.Entry entry1 = new EventTrigger.Entry();
+            entry1.eventID = EventTriggerType.PointerDown;
+
+            //depending on the toggle
+            if (scaleToggle.isOn) {
+
+                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Transform());
+
+            } else if (translateToggle.isOn) {
+
+                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Hold());
+
+            } else if (rotateToggle.isOn) {
+
+                entry1.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Rotate());
+
+            }
+
+            eventTrigger.triggers.Add(entry1);
+
+            EventTrigger.Entry entry2 = new EventTrigger.Entry();
+            entry2.eventID = EventTriggerType.PointerClick;
+            entry2.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().SetGazedAt(true));
+            eventTrigger.triggers.Add(entry2);
+
+
+            EventTrigger.Entry entry3 = new EventTrigger.Entry();
+            entry3.eventID = EventTriggerType.PointerUp;
+            entry3.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().Release());
+            eventTrigger.triggers.Add(entry3);
+
+
+            EventTrigger.Entry entry4 = new EventTrigger.Entry();
+            entry4.eventID = EventTriggerType.PointerEnter;
+            entry4.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().SetGazedAt(true));
+            eventTrigger.triggers.Add(entry4);
+
+
+            EventTrigger.Entry entry5 = new EventTrigger.Entry();
+            entry5.eventID = EventTriggerType.PointerExit;
+            entry5.callback.AddListener((eventData) => obj.GetComponent<Manipulation>().SetGazedAt(false));
+            eventTrigger.triggers.Add(entry5);
+
+
+        }
+
+        //end of brick initialization
+
     }
     private int scale(float minval, float maxval, float x)
     {
@@ -140,9 +202,98 @@ public class CameraController : MonoBehaviour
             controlPanel.SetActive(!controlPanelIsActive);
             Debug.Log("Toggle Control Panel");
         }
+        noneToggle.onValueChanged.AddListener(NoneToggleListener);
+        scaleToggle.onValueChanged.AddListener(ScaleToggleListener);
+        rotateToggle.onValueChanged.AddListener(RotateToggleListener);
+        translateToggle.onValueChanged.AddListener(TranslateToggleListener);
 
 
     }
+    private void NoneToggleListener(bool value)
+    {
+
+        if (noneToggle.isOn)
+        {
+
+
+        }
+
+
+    }
+
+    private void ScaleToggleListener(bool value)
+    {
+        if (scaleToggle.isOn)
+        {
+            foreach (GameObject brick in selectedBricks)
+            {
+                EventTrigger trigger = brick.GetComponent<EventTrigger>();
+
+                foreach (EventTrigger.Entry entry in trigger.triggers)
+                {
+
+                    if (entry.eventID == EventTriggerType.PointerDown)
+                    {
+                        trigger.triggers.Remove(entry);
+                        //entry.callback.AddListener((eventData) => brick.GetComponent<Manipulation>().Transform());
+                        EventTrigger.Entry newEntry = new EventTrigger.Entry();
+                        newEntry.eventID = EventTriggerType.PointerDown;
+                        newEntry.callback.AddListener((eventData) => brick.GetComponent<Manipulation>().Transform());
+                        trigger.triggers.Add(newEntry);
+                    }
+                }
+            }
+
+        }
+    }
+
+    private void RotateToggleListener(bool value)
+    {
+        if (rotateToggle.isOn)
+        {
+          foreach (GameObject brick in selectedBricks)
+          {
+              EventTrigger trigger = brick.GetComponent<EventTrigger>();
+
+              foreach (EventTrigger.Entry entry in trigger.triggers)
+              {
+
+                  if (entry.eventID == EventTriggerType.PointerDown)
+                  {
+
+                      entry.callback.RemoveAllListeners();
+                      entry.callback.AddListener((eventData) => brick.GetComponent<Manipulation>().Rotate());
+                  }
+              }
+          }
+
+        }
+    }
+
+    private void TranslateToggleListener(bool value)
+    {
+        if (translateToggle.isOn)
+        {
+          foreach (GameObject brick in selectedBricks)
+          {
+              EventTrigger trigger = brick.GetComponent<EventTrigger>();
+
+              foreach (EventTrigger.Entry entry in trigger.triggers)
+              {
+
+                  if (entry.eventID == EventTriggerType.PointerDown)
+                  {
+
+                      entry.callback.RemoveAllListeners();
+                      entry.callback.AddListener((eventData) => brick.GetComponent<Manipulation>().Hold());
+                  }
+
+              }
+          }
+
+        }
+    }
+
     private void CarbonToggleListener(bool value)
     {
         if (carbonToggle.isOn)
