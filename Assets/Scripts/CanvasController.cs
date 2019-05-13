@@ -16,6 +16,8 @@ public class CanvasController : MonoBehaviour
     public Button close_carbongoggles;
 
     public Toggle walk;
+    public GameObject tunnelspeed;
+    private float speed;
     public Toggle elevator;
 
     public GameObject elevatormode;
@@ -40,6 +42,7 @@ public class CanvasController : MonoBehaviour
         welcome.SetActive(true);
         instructions.SetActive(false);
         carbongoggles.SetActive(false);
+        tunnelspeed.SetActive(false);
         elevatormode.SetActive(false);
         elevatorpanel.SetActive(false);
         minimap.SetActive(false);
@@ -72,16 +75,25 @@ public class CanvasController : MonoBehaviour
         next3.onClick.AddListener(ToFinish);
         close_class.onClick.AddListener(ExitClass);
     }
+    private void Update()
+    {
+        //GameObject Player = GameObject.Find("Player");
+        //FirstPersonTunnelingLocomotion playerscript = Player.GetComponent<FirstPersonTunnelingLocomotion>();
+        //speed = playerscript.forwardSpeed;
+    }
 
     void walk_toggle_change(Toggle change)
     {
         if (change.isOn)
         {
             minimap.SetActive(true);
+            tunnelspeed.SetActive(true);
+            elevatorpanel.SetActive(false);
         }
         else
         {
             minimap.SetActive(false);
+            tunnelspeed.SetActive(false);
         }
     }
     void elevator_toggle_change(Toggle change)
