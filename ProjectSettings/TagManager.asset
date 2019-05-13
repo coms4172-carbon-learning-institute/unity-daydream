@@ -7,6 +7,8 @@ TagManager:
   - selectable
   - Farming
   - Frame
+  - Minimap Stairs
+  - Brick
   layers:
   - Default
   - TransparentFX
