@@ -70,7 +70,7 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
     /// </summary>
 
     //get InClassroom boolean
-    private bool InClassroom;
+    //protected bool InClassroom;
 
     protected GvrPointerPhysicsRaycaster()
     {
@@ -177,9 +177,10 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
                                            List<RaycastResult> resultAppendList)
     {
 
-       InClassroom = gameObject.GetComponent<ElevatorZone>().InClassroom;
-       Debug.Log(InClassroom);
+       //InClassroom = this.gameObject.GetComponent<ElevatorZone>().InClassroom;
+       //Debug.Log(InClassroom);
       //if in a classroom
+      /*
         if (InClassroom) {
 
           pointerRay.distance = 10f;
@@ -190,6 +191,9 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
           pointerRay.distance = 1000.0f;
 
         }
+        */
+
+        pointerRay.distance = 2.0f;
 
 
         if (eventCamera == null)
@@ -198,6 +202,7 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
         }
 
         int numHits;
+
         if (radius > 0.0f)
         {
             numHits = Physics.SphereCastNonAlloc(

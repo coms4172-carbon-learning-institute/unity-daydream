@@ -28,6 +28,7 @@ public class ElevatorZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("hello");
         if (other.CompareTag("Minimap Stairs"))
         {
             elevatormode.SetActive(true);
@@ -46,6 +47,7 @@ public class ElevatorZone : MonoBehaviour
             PodWindow6.SetActive(false);
             PodWindow7.SetActive(false);
             //adjust the length of the raycast
+
         }
 
     }
@@ -62,7 +64,6 @@ public class ElevatorZone : MonoBehaviour
         {
             elevatormode.SetActive(false);
         }
-
 
         if (other.CompareTag("Target Pod")) {
 
