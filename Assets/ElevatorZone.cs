@@ -7,6 +7,7 @@ public class ElevatorZone : MonoBehaviour
 {
     public GameObject elevatormode;
     public GameObject discGlassParent;
+    public GameObject manPanel;
 
     void Start()
     {

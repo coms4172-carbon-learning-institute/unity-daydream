@@ -12,6 +12,7 @@ TagManager:
   - Target Pod
   - Brick
   - Brick Object
+  - Classroom
   layers:
   - Default
   - TransparentFX

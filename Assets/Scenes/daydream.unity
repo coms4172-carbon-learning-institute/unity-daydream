@@ -3102,7 +3102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &538533305
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3542,6 +3542,14 @@ PrefabInstance:
     - target: {fileID: 100042, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
       propertyPath: m_Name
       value: Model 24thApril(Everything else)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
       propertyPath: m_IsActive
@@ -4463,7 +4471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevatormode: {fileID: 1390526265}
-  discGlassParent: {fileID: 0}
+  discGlassParent: {fileID: 743639756}
+  manPanel: {fileID: 538533304}
 --- !u!136 &726403206
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4539,6 +4548,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &743639756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 00d74c3fda904496abaf59512f684a7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 651700567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &764927071
 GameObject:
   m_ObjectHideFlags: 0
@@ -6348,6 +6363,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FL1_Pod_8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876187129934146719, guid: c185ece8ddc6b4c4c8a699177853730e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Classroom
       objectReference: {fileID: 0}
     - target: {fileID: 6876187129934146707, guid: c185ece8ddc6b4c4c8a699177853730e,
         type: 3}
@@ -10193,6 +10213,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FL1_Pod_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876187129934146719, guid: c185ece8ddc6b4c4c8a699177853730e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6876187129934146707, guid: c185ece8ddc6b4c4c8a699177853730e,
         type: 3}
