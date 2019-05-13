@@ -98,10 +98,9 @@ public class CanvasController : MonoBehaviour
         }
     }
 
-    void Instructions()
+    public void Instructions()
     {
         welcome.SetActive(false);
-        Debug.Log("go to instructions");
         instructions.SetActive(true);
     }
     void ExitWelcome() 
