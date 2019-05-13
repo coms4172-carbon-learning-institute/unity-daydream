@@ -71,8 +71,8 @@ namespace DaydreamElements.Tunneling {
     private const float SLOP_HORIZONTAL = 0.15f;
 
     public GameObject running_panel; //visually indicate that the player is running
-    //public GameObject tunnelspeed;
-        public float forwardSpeed;
+    public Text speed;
+    public float forwardSpeed;
 
     void Awake() {
       // Used for movement if it exists. Otherwise, this script modifies the transform directly.
@@ -176,9 +176,7 @@ namespace DaydreamElements.Tunneling {
 
     public void ApplyTranslation(float dt) {    
       forwardSpeed =  maxSpeed * smoothTouch.y;
-      Debug.Log(forwardSpeed);
-      //GameObject tunnelspeed = GameObject.Find("Tunnel speed");
-      //tunnelspeed.GetComponent<Text>().text = "Traveling speed: " + forwardSpeed;
+      speed.text = "Traveling speed: " + forwardSpeed.ToString("F2");
       Vector3 velocity = new Vector3(0.0f, 0.0f, forwardSpeed);
 
       Quaternion cameraRotation = Camera.main.transform.rotation;

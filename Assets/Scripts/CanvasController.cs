@@ -75,12 +75,6 @@ public class CanvasController : MonoBehaviour
         next3.onClick.AddListener(ToFinish);
         close_class.onClick.AddListener(ExitClass);
     }
-    private void Update()
-    {
-        //GameObject Player = GameObject.Find("Player");
-        //FirstPersonTunnelingLocomotion playerscript = Player.GetComponent<FirstPersonTunnelingLocomotion>();
-        //speed = playerscript.forwardSpeed;
-    }
 
     void walk_toggle_change(Toggle change)
     {
