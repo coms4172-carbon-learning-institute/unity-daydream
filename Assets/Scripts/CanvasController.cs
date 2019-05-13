@@ -15,6 +15,9 @@ public class CanvasController : MonoBehaviour
     public GameObject carbongoggles;
     public Button close_carbongoggles;
 
+    public Toggle walk;
+    public Toggle elevator;
+
     public GameObject elevatormode;
     public GameObject elevatorpanel;
 
@@ -47,6 +50,15 @@ public class CanvasController : MonoBehaviour
         step3.SetActive(false);
         finish.SetActive(false);
 
+        walk.onValueChanged.AddListener(delegate
+        {
+            walk_toggle_change(walk);
+        });
+        elevator.onValueChanged.AddListener(delegate
+        {
+            elevator_toggle_change(elevator);
+        });
+
         howtouse.onClick.AddListener(Instructions);
         close_welcome.onClick.AddListener(ExitWelcome);
 
@@ -61,9 +73,35 @@ public class CanvasController : MonoBehaviour
         close_class.onClick.AddListener(ExitClass);
     }
 
+    void walk_toggle_change(Toggle change)
+    {
+        if (change.isOn)
+        {
+            minimap.SetActive(true);
+        }
+        else
+        {
+            minimap.SetActive(false);
+        }
+    }
+    void elevator_toggle_change(Toggle change)
+    {
+        if (change.isOn)
+        {
+            minimap.SetActive(true);
+            elevatorpanel.SetActive(true);
+        }
+        else
+        {
+            minimap.SetActive(false);
+            elevatorpanel.SetActive(false);
+        }
+    }
+
     void Instructions()
     {
         welcome.SetActive(false);
+        Debug.Log("go to instructions");
         instructions.SetActive(true);
     }
     void ExitWelcome() 
