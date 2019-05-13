@@ -24,6 +24,7 @@ public class ElevatorZone : MonoBehaviour
         {
             Debug.Log("Entered Classroom");
             discGlassParent.SetActive(false);
+            manPanel.SetActive(true);
         }
     }
     private void OnTriggerStay(Collider other)
