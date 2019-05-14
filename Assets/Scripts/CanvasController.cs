@@ -70,7 +70,6 @@ public class CanvasController : MonoBehaviour
         step3.SetActive(false);
         finish.SetActive(false);
 
-
         step1Success = step1Collider.GetComponent<classroomStep1>().step1Succeeded;
 
         walk.onValueChanged.AddListener(delegate
@@ -89,7 +88,7 @@ public class CanvasController : MonoBehaviour
 
         close_carbongoggles.onClick.AddListener(Close_CG);
 
-        //Go.onClick.AddListener(ToStep1);
+        Go.onClick.AddListener(ToStep1);
         close_welcome_class.onClick.AddListener(ExitWelcomeClass);
         next1.onClick.AddListener(ToStep2);
         next2.onClick.AddListener(ToStep3);
@@ -149,13 +148,14 @@ public class CanvasController : MonoBehaviour
     {
         welcome_class.SetActive(false);
     }
-    /*
+
     void ToStep1()
     {
         welcome_class.SetActive(false);
         step1.SetActive(true);
+        manPanel.SetActive(true);
     }
-    */
+
     void ToStep2()
     {
         step1.SetActive(false);
@@ -190,6 +190,7 @@ public class CanvasController : MonoBehaviour
             //manPanel.SetActive(true);
             classroomPanel.SetActive(true);
             classroomWelcome.SetActive(true);
+
             glassSilicon.SetActive(false);
         }
     }
@@ -222,8 +223,7 @@ public class CanvasController : MonoBehaviour
 
         if (step1Success) {
 
-            welcome_class.SetActive(false);
-            step1.SetActive(true);
+            step2.SetActive(true);
 
         }
 

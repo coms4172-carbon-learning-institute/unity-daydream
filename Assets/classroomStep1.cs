@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class classroomStep1 : MonoBehaviour
 {
-
-
-    public GameObject Brick_1;
-    public GameObject Brick_2;
-    public GameObject Brick_3;
+    //public GameObject Brick_1;
+    //public GameObject Brick_2;
+    //public GameObject Brick_3;
 
     private int collisionCount;
 
@@ -25,8 +23,7 @@ public class classroomStep1 : MonoBehaviour
     void Update()
     {
 
-        if (collisionCount == 3) {
-
+        if (collisionCount > 0) {
             step1Succeeded = true;
         }
 
@@ -35,11 +32,19 @@ public class classroomStep1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        collisionCount += 1;
+        Debug.Log(collisionCount);
+        if (other.gameObject.CompareTag("Brick")) {
+          collisionCount += 1;
+        }
 
     }
 
+    private void OnTriggerExit(Collider other)
+
+    {
+        collisionCount -= 1;
+
+    }
 
 
 }
