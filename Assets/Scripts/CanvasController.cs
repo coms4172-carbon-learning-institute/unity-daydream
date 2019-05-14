@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
+
+    public GameObject step1Collider;
+    //public GameObject step2Collider;
+    //public GameObject step3Collider;
+
+    public bool step1Success;
+    public bool step2Success;
+    public bool step3Success;
+
     public GameObject welcome;
     public Button howtouse;
     public Button close_welcome;
@@ -61,6 +70,9 @@ public class CanvasController : MonoBehaviour
         step3.SetActive(false);
         finish.SetActive(false);
 
+
+        step1Success = step1Collider.GetComponent<classroomStep1>().step1Succeeded;
+
         walk.onValueChanged.AddListener(delegate
         {
             walk_toggle_change(walk);
@@ -77,7 +89,7 @@ public class CanvasController : MonoBehaviour
 
         close_carbongoggles.onClick.AddListener(Close_CG);
 
-        Go.onClick.AddListener(ToStep1);
+        //Go.onClick.AddListener(ToStep1);
         close_welcome_class.onClick.AddListener(ExitWelcomeClass);
         next1.onClick.AddListener(ToStep2);
         next2.onClick.AddListener(ToStep3);
@@ -137,11 +149,13 @@ public class CanvasController : MonoBehaviour
     {
         welcome_class.SetActive(false);
     }
+    /*
     void ToStep1()
     {
         welcome_class.SetActive(false);
         step1.SetActive(true);
     }
+    */
     void ToStep2()
     {
         step1.SetActive(false);
@@ -173,7 +187,7 @@ public class CanvasController : MonoBehaviour
             inClassroom = true;
             Debug.Log("Entered Classroom");
             discGlassParent.SetActive(false);
-            manPanel.SetActive(true);
+            //manPanel.SetActive(true);
             classroomPanel.SetActive(true);
             classroomWelcome.SetActive(true);
             glassSilicon.SetActive(false);
@@ -199,5 +213,19 @@ public class CanvasController : MonoBehaviour
             discGlassParent.SetActive(false);
             glassSilicon.SetActive(true);
         }
+    }
+
+
+    void Update() {
+
+        step1Success = step1Collider.GetComponent<classroomStep1>().step1Succeeded;
+
+        if (step1Success) {
+
+            welcome_class.SetActive(false);
+            step1.SetActive(true);
+
+        }
+
     }
 }

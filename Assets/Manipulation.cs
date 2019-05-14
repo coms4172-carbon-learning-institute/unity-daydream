@@ -24,6 +24,9 @@ public class Manipulation : MonoBehaviour
 
     public float transformX, transformY, transformZ;
 
+    private Vector3 initPos;
+    private Vector3 initPointerPos;
+
 
     void Start()
     {
@@ -67,6 +70,8 @@ public class Manipulation : MonoBehaviour
             myRenderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial;
             return;
         }
+        //initPos = gameObject.transform.localRotation;
+        initPointerPos = GvrPointerInputModule.Pointer.PointerTransform.position;
     }
 
     public void Rotate() {
@@ -91,10 +96,7 @@ public class Manipulation : MonoBehaviour
             this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
 
         } else {
-
-
             this.gameObject.transform.Rotate(-1f * xAngle, -1f * yAngle, -1f * zAngle, Space.World);
-
         }
     }
 
@@ -129,7 +131,7 @@ public class Manipulation : MonoBehaviour
 
         }
 
-        transform.localScale = new Vector3(currentScaleX, currentScaleY, currentScaleZ);
+        //transform.localScale = new Vector3(currentScaleX, currentScaleY, currentScaleZ);
         this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
 
 
@@ -139,8 +141,15 @@ public class Manipulation : MonoBehaviour
     public void Hold() {
 
         Transform pointerTransform = GvrPointerInputModule.Pointer.PointerTransform;
-        //transform.position = pointerTransform;
-        transform.SetParent(pointerTransform, true);
+
+        //Vector3 offset = pointerTransform.position - initPointerPos;
+        //print(offset);
+        //initPointerPos = pointerTransform.position;
+
+
+        gameObject.transform.SetParent(pointerTransform, true);
+        //gameObject.transform.localRotation = initPos;
+
 
     }
 
@@ -153,6 +162,9 @@ public class Manipulation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
 
     }
 }
