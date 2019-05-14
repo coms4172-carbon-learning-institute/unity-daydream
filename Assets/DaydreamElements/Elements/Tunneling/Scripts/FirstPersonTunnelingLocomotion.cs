@@ -16,6 +16,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace DaydreamElements.Tunneling {
 
@@ -27,7 +28,10 @@ namespace DaydreamElements.Tunneling {
   public class FirstPersonTunnelingLocomotion : MonoBehaviour {
     [Tooltip("The max speed to translate the camera (meters per second).")]
     public float maxSpeed = 7.0f;
-
+    private bool isWalking = true;
+    public GameObject HandheldController;
+    private GvrControllerInputDevice DaydreamControllerInput;
+       
     [Tooltip("The max angular velocity to rotate the camera (degrees per second).")]
     [Range(0.0f, 180.0f)]
     public float maxAngularSpeed = 30.0f;
@@ -58,7 +62,6 @@ namespace DaydreamElements.Tunneling {
     public Toggle elevatorToggle;
     
     private bool isMoving = false;
-    private bool isElevator = false;
 
     private CharacterController characterController;
     private Vector2 smoothTouch = Vector2.zero;
@@ -67,31 +70,62 @@ namespace DaydreamElements.Tunneling {
     private const float SLOP_VERTICAL = 0.165f;
     private const float SLOP_HORIZONTAL = 0.15f;
 
+    public GameObject running_panel; //visually indicate that the player is running
+    public Text speed;
+    public float forwardSpeed;
+
     void Awake() {
       // Used for movement if it exists. Otherwise, this script modifies the transform directly.
       characterController = GetComponent<CharacterController>();
       Assert.IsTrue(minInputThreshold < maxInputThreshold);
     }
 
-    void OnDisable() {
+    private void Start()
+    {
+        DaydreamControllerInput = HandheldController.GetComponent<GvrTrackedController>().ControllerInputDevice;
+    }
+
+        void OnDisable() {
       StopMoving();
     }
 
-    protected virtual void Update() {
-      if (GvrControllerInput.TouchDown) {
-        initTouch = GvrControllerInput.TouchPos;
-      } else if (CanStartMoving()) {
-        isMoving = true;
-        smoothTouch = Vector2.zero;
-        vignetteController.ShowVignette();
-      } else if (GvrControllerInput.TouchUp) {
-        StopMoving();
-      }
+        protected virtual void Update()
+        {
+            if (GvrControllerInput.TouchDown)
+            {
+                initTouch = GvrControllerInput.TouchPos;
+            }
+            else if (CanStartMoving())
+            {
+                isMoving = true;
+                smoothTouch = Vector2.zero;
+                vignetteController.ShowVignette();
+            }
+            else if (GvrControllerInput.TouchUp)
+            {
+                StopMoving();
+            }
 
-      if (isMoving) {
-        Move();
-      }
-    }
+            if (isMoving)
+            {
+                if (walkToggle.isOn && DaydreamControllerInput.GetButtonUp(GvrControllerButton.TouchPadButton))
+                {
+                    isWalking = !isWalking;
+                    // if walking, max speed is lower
+                    maxSpeed = isWalking ? 100f : 300f;
+                    //if walking, running panel is off
+                    if (isWalking)
+                    {
+                        running_panel.SetActive(false);
+                    }
+                    else
+                    {
+                        running_panel.SetActive(true);
+                    }
+                }
+                Move();
+            }
+        }
 
     protected virtual void Move() {
       Vector2 touchPos = GvrControllerInput.TouchPosCentered;
@@ -119,10 +153,7 @@ namespace DaydreamElements.Tunneling {
 
         if (walkToggle.isOn){
           ApplyTranslation(dt);
-        } else if (elevatorToggle.isOn){
-          ApplyElevatorTranslation(dt);
-        }
-        
+        } 
       }
     }
 
@@ -140,26 +171,10 @@ namespace DaydreamElements.Tunneling {
       transform.rotation = rotation;
     }
 
-    private void ApplyTranslation(float dt) {
-      float forwardSpeed =  maxSpeed * smoothTouch.y;
+    public void ApplyTranslation(float dt) {    
+      forwardSpeed =  maxSpeed * smoothTouch.y;
+      speed.text = "Traveling speed: " + forwardSpeed.ToString("F2");
       Vector3 velocity = new Vector3(0.0f, 0.0f, forwardSpeed);
-
-      Quaternion cameraRotation = Camera.main.transform.rotation;
-      cameraRotation = Quaternion.Euler(new Vector3(0.0f, cameraRotation.eulerAngles.y, 0.0f));
-      Vector3 rotatedVelocity = cameraRotation * velocity;
-
-      if (characterController != null) {
-        characterController.SimpleMove(rotatedVelocity);
-      } else {
-        Vector3 position = transform.position;
-        position += rotatedVelocity * dt;
-        transform.position = position;
-      }
-    }
-
-    private void ApplyElevatorTranslation(float dt){
-      float forwardSpeed =  maxSpeed * smoothTouch.y;
-      Vector3 velocity = new Vector3(0.0f, forwardSpeed, 0.0f );
 
       Quaternion cameraRotation = Camera.main.transform.rotation;
       cameraRotation = Quaternion.Euler(new Vector3(0.0f, cameraRotation.eulerAngles.y, 0.0f));
@@ -229,7 +244,7 @@ namespace DaydreamElements.Tunneling {
         return false;
       }
 
-      if (!walkToggle.isOn && !elevatorToggle.isOn){
+      if (!walkToggle.isOn){
         return false;
       }
 

@@ -49,14 +49,39 @@ public class CameraController : MonoBehaviour
         selectedObjs = GameObject.FindGameObjectsWithTag("selectable");
 
         infoTitle_dict.Add("Farming", "CLT(Cross Laminated Timber)");
-        info_dict.Add("Farming", "Embodied carbon: - 460 Kg/Ton");
+        info_dict.Add("Farming", "Embodied carbon: - 900 Kg/Ton");
         infoMat_dict.Add("Farming", "Farming_material");
-        carbon_dict.Add("Farming", -460f);
+        carbon_dict.Add("Farming", -900f);
 
         infoTitle_dict.Add("Frame", "BIOCHAR Brick");
-        info_dict.Add("Frame", "Embodied carbon: - 900 Kg/Ton");
+        info_dict.Add("Frame", "Embodied carbon: - 460 Kg/Ton");
         infoMat_dict.Add("Frame", "Frame_material");
-        carbon_dict.Add("Frame", -900f);
+        carbon_dict.Add("Frame", -460);
+
+        infoTitle_dict.Add("Glue", "GLT(Glue Laminated Timber)");
+        info_dict.Add("Glue", "Embodied carbon: - 870 Kg/Ton");
+        infoMat_dict.Add("Glue", "Glue_material");
+        carbon_dict.Add("Glue", -870);
+
+        infoTitle_dict.Add("Floor", "Gravel");
+        info_dict.Add("Floor", "Embodied carbon: - 4.32 Kg/Ton");
+        infoMat_dict.Add("Floor", "Floor_material");
+        carbon_dict.Add("Floor", -4.32f);
+
+        infoTitle_dict.Add("Floor Circular", "Wooden Floor Planks");
+        info_dict.Add("Floor Circular", "Embodied carbon: - 650 Kg/Ton");
+        infoMat_dict.Add("Floor Circular", "Floor_circular_material");
+        carbon_dict.Add("Floor Circular", -650);
+
+        infoTitle_dict.Add("Discs", "Hemp Bioplastic");
+        info_dict.Add("Discs", "Embodied carbon: - 428 Kg/Ton");
+        infoMat_dict.Add("Discs", "Discs_material");
+        carbon_dict.Add("Discs", -428);
+
+        infoTitle_dict.Add("Floor Inside", "Soil");
+        info_dict.Add("Floor Inside", "Embodied carbon: - 23 Kg/Ton");
+        infoMat_dict.Add("Floor Inside", "Floor_inside_material");
+        carbon_dict.Add("Floor Inside", -23);
 
         selectedBricks = GameObject.FindGameObjectsWithTag("Brick");
 
@@ -80,8 +105,7 @@ public class CameraController : MonoBehaviour
 
         //print(scale(min, max, -500.0f));
         //print(scale(min, max, -460.0f));
-
-
+        // visual indication of running, workingo n displaying tunnel speed
         foreach (GameObject obj in selectedObjs)
         {
             currentObjMaterial = obj.GetComponent<Renderer>().material;
