@@ -13,6 +13,7 @@ TagManager:
   - Brick
   - Brick Object
   - Classroom
+  - Step 2 Collider
   layers:
   - Default
   - TransparentFX

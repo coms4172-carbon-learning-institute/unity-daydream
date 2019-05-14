@@ -252,10 +252,8 @@ public class CameraController : MonoBehaviour
             foreach (GameObject brick in selectedBricks)
             {
                 EventTrigger trigger = brick.GetComponent<EventTrigger>();
-
                 foreach (EventTrigger.Entry entry in trigger.triggers)
                 {
-
                     if (entry.eventID == EventTriggerType.PointerDown)
                     {
                         trigger.triggers.Remove(entry);
@@ -304,7 +302,6 @@ public class CameraController : MonoBehaviour
 
               foreach (EventTrigger.Entry entry in trigger.triggers)
               {
-
                   if (entry.eventID == EventTriggerType.PointerDown)
                   {
 

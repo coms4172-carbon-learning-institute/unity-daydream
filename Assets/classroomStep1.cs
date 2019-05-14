@@ -23,7 +23,7 @@ public class classroomStep1 : MonoBehaviour
     void Update()
     {
 
-        if (collisionCount > 0) {
+        if (collisionCount == 3) {
             step1Succeeded = true;
         }
 

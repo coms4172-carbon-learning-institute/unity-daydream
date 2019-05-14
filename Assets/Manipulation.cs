@@ -15,10 +15,12 @@ public class Manipulation : MonoBehaviour
     public float xAngle, yAngle, zAngle;
     public Vector3 initialPosition;
     public Vector3 currentScale;
+    public Vector3 offset;
     private Vector2 initTouch;
     public float minInputThreshold;
     public float maxInputThreshold;
     private GameObject brickToSet;
+    private bool inRotate;
 
     public GameObject brickParent;
 
@@ -33,6 +35,7 @@ public class Manipulation : MonoBehaviour
 
       myRenderer = GetComponent<Renderer>();
       SetGazedAt(false);
+      inRotate = false;
 
       //pointer = GameObject.Find("ControllerPointerParent");
       //initialPosition = GvrPointerInputModule.Pointer.PointerTransform;
@@ -62,7 +65,8 @@ public class Manipulation : MonoBehaviour
     public void SetGazedAt(bool gazedAt)
     {
 
-        gameObject.transform.SetParent(brickParent.transform);
+        //gameObject.transform.SetParent(brickParent.transform);
+        //gameObject.transform.SetParent(brickParent.transform);
 
         Debug.Log("in set gazed at");
         if (inactiveMaterial != null && gazedAtMaterial != null)
@@ -70,13 +74,16 @@ public class Manipulation : MonoBehaviour
             myRenderer.material = gazedAt ? gazedAtMaterial : inactiveMaterial;
             return;
         }
-        //initPos = gameObject.transform.localRotation;
-        initPointerPos = GvrPointerInputModule.Pointer.PointerTransform.position;
+        //initPos = gameObject.transform.position;
+        //initPointerPos = GvrPointerInputModule.Pointer.PointerTransform.position;
+
+        //offset = initPointerPos - initPos;
+        //currentScale = gameObject.transform.localScale;
     }
 
     public void Rotate() {
 
-
+        inRotate = true;
         //initTouch = GvrControllerInput.TouchPos;
         //Transform diff = GvrPointerInputModule.Pointer.PointerTransform;
         //Transform diff = currentPosition.position - initialPosition.position;
@@ -102,6 +109,7 @@ public class Manipulation : MonoBehaviour
 
     public void Transform() {
 
+        inRotate = false;
         float diff = 10f;
 
         float currentScaleX = currentScale.x + 10f;
@@ -131,8 +139,8 @@ public class Manipulation : MonoBehaviour
 
         }
 
-        //transform.localScale = new Vector3(currentScaleX, currentScaleY, currentScaleZ);
-        this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
+        transform.localScale = new Vector3(currentScaleX, currentScaleY, currentScaleZ);
+        //this.gameObject.transform.Rotate(xAngle, yAngle, zAngle, Space.World);
 
 
     }
@@ -140,6 +148,7 @@ public class Manipulation : MonoBehaviour
 
     public void Hold() {
 
+        inRotate = false;
         Transform pointerTransform = GvrPointerInputModule.Pointer.PointerTransform;
 
         //Vector3 offset = pointerTransform.position - initPointerPos;
@@ -147,6 +156,7 @@ public class Manipulation : MonoBehaviour
         //initPointerPos = pointerTransform.position;
 
 
+        //gameObject.transform.position = pointerTransform.transform.position - offset;
         gameObject.transform.SetParent(pointerTransform, true);
         //gameObject.transform.localRotation = initPos;
 
@@ -160,8 +170,13 @@ public class Manipulation : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+      if (!inRotate) {
+
+        transform.Rotate(-1*transform.eulerAngles.x, -1*transform.eulerAngles.y,-1*transform.eulerAngles.z, Space.Self);
+
+      }
 
 
 
