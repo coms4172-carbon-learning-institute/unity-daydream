@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
+    public GameObject player;
 
     public GameObject step1Collider;
     public GameObject step2Collider1;
@@ -14,6 +15,10 @@ public class CanvasController : MonoBehaviour
     public GameObject step3Collider2;
     public GameObject step3Collider3;
     public GameObject step3Collider4;
+
+    public GameObject constructionStage1;
+    public GameObject constructionStage2;
+    public GameObject constructionStage3;
 
     public bool step1Success;
     public bool step2Success;
@@ -35,6 +40,7 @@ public class CanvasController : MonoBehaviour
     public GameObject tunnelspeed;
     private float speed;
     public Toggle elevator;
+    public GameObject runningOverlay;
 
     public GameObject elevatormode;
     public GameObject elevatorpanel;
@@ -67,6 +73,8 @@ public class CanvasController : MonoBehaviour
     private bool afterstep1;
     private bool afterstep2;
     private bool afterstep3;
+
+    public Canvas mainCanvas;
 
     void Start()
     {
@@ -185,6 +193,8 @@ public class CanvasController : MonoBehaviour
         step2.SetActive(true);
         step2Collider1.SetActive(true);
         step2Collider2.SetActive(true);
+
+        
     }
     void ToStep3()
     {
@@ -223,6 +233,16 @@ public class CanvasController : MonoBehaviour
             classroomWelcome.SetActive(true);
             welcome.SetActive(false);
             glassSilicon.SetActive(false);
+
+            // mainCanvas.gameObject.transform.position = new Vector3 (mainCanvas.gameObject.transform.position.x, mainCanvas.gameObject.transform.position.y, 5);
+            // mainCanvas.gameObject.transform.position = new Vector3 (50f, 52f, 5f);
+            mainCanvas.GetComponent<RectTransform>().localPosition = new Vector3 (0f, 2f, 5f);
+            mainCanvas.gameObject.transform.localScale = new Vector3(0.03f, 0.03f, 0.3f);
+            tunnelspeed.SetActive(false);
+            mainmenu.SetActive(false);
+            runningOverlay.SetActive(false);
+            walk.isOn = false;
+            player.transform.position = new Vector3(60f, 180f, 1835f);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -244,6 +264,14 @@ public class CanvasController : MonoBehaviour
             Debug.Log("Exited Classroom");
             discGlassParent.SetActive(false);
             glassSilicon.SetActive(true);
+
+            mainCanvas.gameObject.transform.position = new Vector3 (mainCanvas.gameObject.transform.position.x, mainCanvas.gameObject.transform.position.y, 20);
+            mainCanvas.gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            
+            tunnelspeed.SetActive(true);
+            mainmenu.SetActive(true);
+            runningOverlay.SetActive(true);
+            walk.isOn = true;
         }
     }
 
@@ -259,6 +287,7 @@ public class CanvasController : MonoBehaviour
             step1Success = false;
             //enable Step 1
             afterstep1 = true;
+            constructionStage1.SetActive(true);
         }
 
         step2Count += step2Collider1.GetComponent<classroomStep2>().count;
@@ -271,6 +300,9 @@ public class CanvasController : MonoBehaviour
             step2.SetActive(false);
             step2result.SetActive(true);
             afterstep2 = true;
+            //constructionStage1.SetActive(false);
+            constructionStage2.SetActive(true);
+            constructionStage3.SetActive(false);
             //ENABLE STEP 2 MODEL
 
         }
@@ -285,6 +317,8 @@ public class CanvasController : MonoBehaviour
             step3result.SetActive(true);
             //ENABLE STEP 2 MODEL
             afterstep3 = true;
+            //constructionStage2.SetActive(false);
+            constructionStage3.SetActive(true);
 
         }
 

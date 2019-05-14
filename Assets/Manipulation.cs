@@ -121,9 +121,9 @@ public class Manipulation : MonoBehaviour
         if (IsTouchTransformation(initTouch)) {
 
             Debug.Log("in top half");
-            currentScaleX = currentScale.x + 10f;
-            currentScaleY = currentScale.y + 10f;
-            currentScaleZ = currentScale.z + 10f;
+            currentScaleX = currentScale.x + 5f;
+            currentScaleY = currentScale.y + 5f;
+            currentScaleZ = currentScale.z + 5f;
 
         } else {
 

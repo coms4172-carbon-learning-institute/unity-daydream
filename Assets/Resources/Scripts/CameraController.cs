@@ -256,12 +256,9 @@ public class CameraController : MonoBehaviour
                 {
                     if (entry.eventID == EventTriggerType.PointerDown)
                     {
-                        trigger.triggers.Remove(entry);
-                        //entry.callback.AddListener((eventData) => brick.GetComponent<Manipulation>().Transform());
-                        EventTrigger.Entry newEntry = new EventTrigger.Entry();
-                        newEntry.eventID = EventTriggerType.PointerDown;
-                        newEntry.callback.AddListener((eventData) => brick.GetComponent<Manipulation>().Transform());
-                        trigger.triggers.Add(newEntry);
+                        entry.callback.RemoveAllListeners();
+                        entry.callback.AddListener((eventData) => brick.GetComponent<Manipulation>().Transform());
+                        
                     }
                 }
             }
