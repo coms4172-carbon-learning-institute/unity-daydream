@@ -174,16 +174,16 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
                                            PointerEventData eventData,
                                            List<RaycastResult> resultAppendList)
     {
-        inClassroom = playerIcon.GetComponent<CanvasController>().inClassroom;
+        // inClassroom = playerIcon.GetComponent<CanvasController>().inClassroom;
 
         
-        if (inClassroom) {
-            pointerRay.distance = 90.0f;
+        // if (inClassroom) {
+        //     pointerRay.distance = 250.0f;
 
-        } else {
-            pointerRay.distance = 1000.0f;
-        }
-        Debug.Log("Pointer Distance " + pointerRay.distance);
+        // } else {
+        //     pointerRay.distance = 2000.0f;
+        // }
+        pointerRay.distance = 5000.0f;
         // pointerRay.distance = 50.0f;
 
         if (eventCamera == null)

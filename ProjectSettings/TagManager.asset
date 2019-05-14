@@ -14,6 +14,11 @@ TagManager:
   - Brick Object
   - Classroom
   - Step 2 Collider
+  - Glue
+  - Floor
+  - Floor Circular
+  - Discs
+  - Floor Inside
   layers:
   - Default
   - TransparentFX

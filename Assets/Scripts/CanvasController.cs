@@ -31,7 +31,7 @@ public class CanvasController : MonoBehaviour
     public Button close_welcome;
 
     public GameObject instructions;
-    //public Button next;
+    public Button next;
 
     public GameObject carbongoggles;
     public Button close_carbongoggles;
@@ -112,7 +112,7 @@ public class CanvasController : MonoBehaviour
         howtouse.onClick.AddListener(Instructions);
         close_welcome.onClick.AddListener(ExitWelcome);
 
-        //next.onClick.AddListener(GoToCarbonGoggles);
+        next.onClick.AddListener(GoToCarbonGoggles);
 
         close_carbongoggles.onClick.AddListener(Close_CG);
 
@@ -215,6 +215,7 @@ public class CanvasController : MonoBehaviour
     void ExitClass()
     {
         step3result.SetActive(false);
+        player.transform.position = new Vector3(60f, 180f, 1800f);
     }
     private void OnTriggerEnter(Collider other)
     {
