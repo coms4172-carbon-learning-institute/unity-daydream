@@ -105,11 +105,7 @@ public class CameraController : MonoBehaviour
 
         //print(scale(min, max, -500.0f));
         //print(scale(min, max, -460.0f));
-
-<<<<<<< HEAD
-
-=======
->>>>>>> visual indication of running, workingo n displaying tunnel speed
+        // visual indication of running, workingo n displaying tunnel speed
         foreach (GameObject obj in selectedObjs)
         {
             currentObjMaterial = obj.GetComponent<Renderer>().material;
