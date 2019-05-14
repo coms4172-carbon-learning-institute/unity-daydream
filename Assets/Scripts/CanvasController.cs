@@ -38,6 +38,13 @@ public class CanvasController : MonoBehaviour
     public GameObject finish;
     public Button close_class;
 
+    public GameObject discGlassParent;
+    public GameObject manPanel;
+    public GameObject classroomPanel;
+    public GameObject classroomWelcome;
+    public GameObject glassSilicon;
+    public bool inClassroom;
+
     void Start()
     {
         welcome.SetActive(true);
@@ -111,7 +118,7 @@ public class CanvasController : MonoBehaviour
         welcome.SetActive(false);
         instructions.SetActive(true);
     }
-    void ExitWelcome() 
+    void ExitWelcome()
     {
         welcome.SetActive(false);
         mainmenu.SetActive(true);
@@ -156,9 +163,20 @@ public class CanvasController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Minimap Stairs"))
         {
             elevatormode.SetActive(true);
+        }
+        if (other.CompareTag("Classroom"))
+        {
+            inClassroom = true;
+            Debug.Log("Entered Classroom");
+            discGlassParent.SetActive(false);
+            manPanel.SetActive(true);
+            classroomPanel.SetActive(true);
+            classroomWelcome.SetActive(true);
+            glassSilicon.SetActive(false);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -173,6 +191,13 @@ public class CanvasController : MonoBehaviour
         if (other.CompareTag("Minimap Stairs"))
         {
             elevatormode.SetActive(false);
+        }
+        if (other.CompareTag("Classroom"))
+        {
+            inClassroom = false;
+            Debug.Log("Exited Classroom");
+            discGlassParent.SetActive(false);
+            glassSilicon.SetActive(true);
         }
     }
 }

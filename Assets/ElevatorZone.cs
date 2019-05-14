@@ -8,6 +8,7 @@ public class ElevatorZone : MonoBehaviour
     public GameObject elevatormode;
     public GameObject discGlassParent;
     public GameObject manPanel;
+    public GameObject classroomPanel;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class ElevatorZone : MonoBehaviour
             Debug.Log("Entered Classroom");
             discGlassParent.SetActive(false);
             manPanel.SetActive(true);
+            classroomPanel.SetActive(true);
         }
     }
     private void OnTriggerStay(Collider other)

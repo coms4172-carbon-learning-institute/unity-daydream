@@ -3588,8 +3588,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414781197}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -58.451363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 981827066}
@@ -3603,7 +3603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -3.273985, y: 1160.0496}
   m_SizeDelta: {x: 500, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &414781199
@@ -5009,6 +5009,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_TagString
+      value: Farming
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108100, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_TagString
+      value: Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 108102, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_TagString
+      value: Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 108104, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_TagString
+      value: Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 108110, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
+      propertyPath: m_TagString
+      value: Frame
+      objectReference: {fileID: 0}
     - target: {fileID: 400042, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1887.2205
@@ -5064,34 +5092,6 @@ PrefabInstance:
     - target: {fileID: 400042, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
       propertyPath: m_LocalScale.z
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 100014, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100016, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
-      propertyPath: m_TagString
-      value: Farming
-      objectReference: {fileID: 0}
-    - target: {fileID: 100016, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 108100, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
-      propertyPath: m_TagString
-      value: Frame
-      objectReference: {fileID: 0}
-    - target: {fileID: 108102, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
-      propertyPath: m_TagString
-      value: Frame
-      objectReference: {fileID: 0}
-    - target: {fileID: 108104, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
-      propertyPath: m_TagString
-      value: Frame
-      objectReference: {fileID: 0}
-    - target: {fileID: 108110, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
-      propertyPath: m_TagString
-      value: Frame
       objectReference: {fileID: 0}
     - target: {fileID: 103954, guid: 00d74c3fda904496abaf59512f684a7c, type: 3}
       propertyPath: m_IsActive
@@ -13663,14 +13663,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedObjs: []
+  brickObjs: []
   currentObjMaterial: {fileID: 0}
   canvas: {fileID: 155878486}
   panel: {fileID: 1370386537}
   controlPanel: {fileID: 1714836867}
+  manPanel: {fileID: 0}
   rawimage: {fileID: 12049849}
   info: {fileID: 919717260}
   infoTitle: {fileID: 2122266245}
   carbonToggle: {fileID: 951873661}
+  noneToggle: {fileID: 0}
+  scaleToggle: {fileID: 0}
+  translateToggle: {fileID: 0}
+  rotateToggle: {fileID: 0}
   currSelectedObj: {fileID: 0}
   HandheldController: {fileID: 1490550201}
 --- !u!4 &1517625391 stripped

@@ -35,6 +35,8 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
 {
     /// <summary>Const to use for clarity when no event mask is set.</summary>
     protected const int NO_EVENT_MASK_SET = -1;
+    private bool inClassroom;
+    public GameObject playerIcon;
 
     /// <summary>
     /// Layer mask used to filter events. Always combined with the camera's culling mask if a camera
@@ -172,7 +174,19 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
                                            PointerEventData eventData,
                                            List<RaycastResult> resultAppendList)
     {
-        pointerRay.distance = 1000.0f;
+        inClassroom = playerIcon.GetComponent<CanvasController>().inClassroom;
+
+        /*
+        if (inClassroom) {
+            pointerRay.distance = 90.0f;
+
+        } else {
+            pointerRay.distance = 1000.0f;
+        }
+        */
+
+        pointerRay.distance = 50.0f;
+
         if (eventCamera == null)
         {
             return false;
@@ -236,7 +250,7 @@ public class GvrPointerPhysicsRaycaster : GvrBasePointerRaycaster
             };
 
             resultAppendList.Add(result);
-            
+
         }
 
         return true;
